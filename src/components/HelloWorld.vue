@@ -9,12 +9,13 @@
   </div> -->
 <!-- <p>TEST TEST TEST</p> -->
 <div style="height:600px; width:800px">
-    <l-map ref="map" v-model:zoom="zoom" :center="[47.41322, -1.219482]">
+    <l-map ref="map" v-model:zoom="zoom" :center="[48.7507965, 2.2626174]">
       <l-tile-layer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         layer-type="base"
         name="OpenStreetMap"
       ></l-tile-layer>
+      <l-marker :lat-lng="markerLatLng" ></l-marker>
     </l-map>
   </div>
 
@@ -36,7 +37,11 @@ export default {
     return{
       erps: null,
       acces: null,
-      zoom: 2,
+      zoom: 13,
+      center: [48.7507965, 2.2626174],
+      bounds: null,
+      markerLatLng: [48.753288690949674, 2.305369377136231]
+
     }
   },
   mounted(){
