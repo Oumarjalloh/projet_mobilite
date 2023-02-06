@@ -1,30 +1,63 @@
 <template>
   <div class="hello">
-   <div :key='index' v-for="(mobilite, index) in mobilite">
-    <h1> {{ mobilite }}</h1>
+   <!-- <div :key='index' v-for="(erps, index) in erps">
+    <h1> {{ erps }}</h1>
    </div>
+   <div :key="index" v-for="(acces, index) in acces">
+    <h2>{{ acces }}</h2>
+    <p>Test</p>
+  </div> -->
+<!-- <p>TEST TEST TEST</p> -->
+<div style="height:600px; width:800px">
+    <l-map ref="map" v-model:zoom="zoom" :center="[47.41322, -1.219482]">
+      <l-tile-layer
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        layer-type="base"
+        name="OpenStreetMap"
+      ></l-tile-layer>
+    </l-map>
+  </div>
 
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import "leaflet/dist/leaflet.css";
+import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
 export default {
   name: 'HelloWorld',
+  components: {
+    LMap,
+    LTileLayer,
+    LMarker,
+  },
   data(){
     return{
-      mobilite: null
+      erps: null,
+      acces: null,
+      zoom: 2,
     }
   },
   mounted(){
     axios
     .get('https://acceslibre.beta.gouv.fr/api/erps/?commune=Antony')
     .then((reponse) => {
-      this.mobilite = reponse;
-      console.log(this.mobilite)
+      this.erps = reponse;
+      console.log(this.erps)
     })
-  }
+  },
+  mounted2(){
+  axios
+  .get('https://acceslibre.beta.gouv.fr/api/accessibilite/?commune=Antony')
+  .then((reponse2) =>{
+    this.acces = reponse2;
+    console.log(this.acces)
+  })
+},
 }
+
+
 </script>
 
 
