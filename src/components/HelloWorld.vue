@@ -15,11 +15,24 @@
         layer-type="base"
         name="OpenStreetMap"
       ></l-tile-layer>
-      <l-marker :lat-lng="markerLatLng" ></l-marker>
+      <div v-for="marker in erps">
+        <l-marker v-if="marker.accessibilite.datas.conformite.conformite != null" :lat-lng="[marker.geom.coordinates[1], marker.geom.coordinates[0]]" ></l-marker>
+      </div>
+      <l-marker :lat-lng="[48.753288690949674, 2.305369377136231]" ></l-marker>
     </l-map>
   </div>
 
   </div>
+  <ul v-for="erp in erps">
+    <li>
+      <ul>
+        <li>{{ erp.nom }}</li>
+        <li>{{ erp.activite.nom }}</li>
+        <li>Latitude : {{ erp.geom.coordinates[1] }}</li>
+        <li>Longitude : {{ erp.geom.coordinates[0] }}</li>
+      </ul>
+    </li>
+  </ul>
 </template>
 
 <script>
@@ -39,27 +52,18 @@ export default {
       acces: null,
       zoom: 13,
       center: [48.7507965, 2.2626174],
-      bounds: null,
-      markerLatLng: [48.753288690949674, 2.305369377136231]
-
+      bounds: null
     }
   },
   mounted(){
     axios
-    .get('https://acceslibre.beta.gouv.fr/api/erps/?commune=Antony')
+    .get('https://acceslibre.beta.gouv.fr/api/erps/?commune=Antony&readable=true&page_size=150')
     .then((reponse) => {
       this.erps = reponse;
+      this.erps = this.erps.data.results
       console.log(this.erps)
     })
-  },
-  mounted2(){
-  axios
-  .get('https://acceslibre.beta.gouv.fr/api/accessibilite/?commune=Antony')
-  .then((reponse2) =>{
-    this.acces = reponse2;
-    console.log(this.acces)
-  })
-},
+  }
 }
 
 
