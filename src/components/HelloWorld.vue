@@ -15,15 +15,27 @@
         layer-type="base"
         name="OpenStreetMap"
       ></l-tile-layer>
-      <div v-for="marker in erps">
-        <l-marker v-if="marker.accessibilite.datas.conformite.conformite != null" :lat-lng="[marker.geom.coordinates[1], marker.geom.coordinates[0]]" ></l-marker>
+      <div :key="marker.uuid" v-for="marker in erps">
+        <l-marker  :lat-lng="[marker.geom.coordinates[1], marker.geom.coordinates[0]]" v-on:click="Popup">
+      </l-marker>
+                <teleport to="body">
+                  <div v-if="modal" class="modal">
+    <p>Hello from the modal!</p>
+    <button @click="open = false">Close</button>
+  </div>
+                </teleport>
       </div>
-      <l-marker :lat-lng="[48.753288690949674, 2.305369377136231]" ></l-marker>
+
+ 
+      <!-- <l-marker :lat-lng="[48.7507965, 2.2626174]" >
+
+
+      </l-marker> -->
     </l-map>
   </div>
 
   </div>
-  <ul v-for="erp in erps">
+  <ul :key='erp.uuid' v-for="erp in erps">
     <li>
       <ul>
         <li>{{ erp.nom }}</li>
@@ -33,12 +45,13 @@
       </ul>
     </li>
   </ul>
+
 </template>
 
 <script>
 import axios from 'axios'
 import "leaflet/dist/leaflet.css";
-import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
+import { LMap, LTileLayer, LMarker, } from "@vue-leaflet/vue-leaflet";
 export default {
   name: 'HelloWorld',
   components: {
@@ -52,7 +65,8 @@ export default {
       acces: null,
       zoom: 13,
       center: [48.7507965, 2.2626174],
-      bounds: null
+      bounds: null,
+      modal: false
     }
   },
   mounted(){
@@ -63,13 +77,39 @@ export default {
       this.erps = this.erps.data.results
       console.log(this.erps)
     })
+  },
+  methods: {
+    Popup(){
+      if (this.modal== false) {
+        this.modal = true
+      }
+      else {
+        this.modal = false
+      }
+      alert('Marche ?')
+    }
   }
 }
 
 
 </script>
-
-
 <style>
+.modal {
+  position: fixed;
+  z-index: 999;
+  top: 20%;
+  left: 50%;
+  width: 300px;
+  margin-left: -150px;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 
 </style>
