@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <div :key="index" v-for="(antony, index) in antony">
-      <h1>{{ antony.translations.fr }}</h1>
+      <h1>{{ antony.name }}</h1>
       <!-- <img :src="antony.flag" alt=""> -->
     </div>
     <!-- <h1>{{ msg }}</h1> -->
@@ -22,7 +22,7 @@ export default {
   },
   mounted(){
     axios
-    .get('https:acceslibre.beta.gouv.fr/api/erps/?commune=Antony&readable=true&page_size=150')
+    .get('https://acceslibre.beta.gouv.fr/api/erps/?commune=Antony&readable=true&page_size=150')
     .then((reponse) => {
       this.antony = reponse.data;
       console.log(this.antony)
