@@ -1,10 +1,15 @@
 <template>
   <div class="hello">
+    <div :key="index" v-for="(antony, index) in antony">
+      <h1>{{ antony.translations.fr }}</h1>
+      <!-- <img :src="antony.flag" alt=""> -->
+    </div>
     <!-- <h1>{{ msg }}</h1> -->
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'HelloWorld',
   // props: {
@@ -17,14 +22,17 @@ export default {
   },
   mounted(){
     axios
-    .get(' https:acceslibre.beta.gouv.fr/api/erps/?commune=Antony&readable=true&page_size=150')
-    .then(reponse => (this.antony = reponse))
-  }
+    .get('https:acceslibre.beta.gouv.fr/api/erps/?commune=Antony&readable=true&page_size=150')
+    .then((reponse) => {
+      this.antony = reponse.data;
+      console.log(this.antony)
+    });
+  },
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
 /* h3 {
   margin: 40px 0 0;
 }
