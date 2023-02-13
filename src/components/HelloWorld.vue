@@ -10,8 +10,15 @@ export default {
   // props: {
   //   msg: String
   // }
+  data(){
+    return{
+      antony: null,
+    }
+  },
   mounted(){
-    
+    axios
+    .get(' https:acceslibre.beta.gouv.fr/api/erps/?commune=Antony&readable=true&page_size=150')
+    .then(reponse => (this.antony = reponse))
   }
 }
 </script>

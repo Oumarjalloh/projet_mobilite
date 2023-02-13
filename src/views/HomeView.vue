@@ -14,6 +14,5 @@ export default {
   // components: {
   //   HelloWorld
   // }
-  // https:acceslibre.beta.gouv.fr/api/erps/?commune=Antony&readable=true&page_size=150
 }
 </script>
