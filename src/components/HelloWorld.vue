@@ -1,7 +1,8 @@
 <template>
-  <div class="hello">
+  <!-- <div class="hello">
     <h1>{{ msg }}</h1>
-  </div>
+  </div> -->
+  <h1>Oumar</h1>
 </template>
 
 <script>
