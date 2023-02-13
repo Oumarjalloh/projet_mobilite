@@ -1,12 +1,24 @@
 <template>
   <div class="hello">
-    <div class="search-container">
+    <!-- <div class="search-container">
         <form action="#">
           <input type="text" placeholder="Rechercher...">
           <button type="submit">AHHAHHAHHH</button>
 
         </form>
+      </div> -->
+      <div>
+        <div class="items-search">
+          <input type="text" v-model="input" placeholder="Search..." v >
+          <button type="submit" v-on:click="Oui">Rechercher</button>
+
+          <div class="panel" id="awesome" v-for="items in erps" :key="items">
+       <p>{{ items.nom }}</p>
+       </div>
+        </div>
+
       </div>
+
 <div style="height:600px; width:800px">
     <l-map ref="map" v-model:zoom="zoom" :center="[48.7507965, 2.2626174]">
       <l-tile-layer
@@ -69,7 +81,10 @@ export default {
       zoom: 13,
       center: [48.7507965, 2.2626174],
       bounds: null,
-      modal: false
+      modal: false,
+      searchitems: false,
+      listdemerde: document.getElementById("awesome"),
+      listwrap: document.getElementsByClassName('panel')
     }
   },
   mounted(){
@@ -89,7 +104,22 @@ export default {
       else {
         this.modal = false
       }
+    },
+    Search(){
+      if (this.listdemerde == false){
+        this.listdemerde.style.visibility = 'visible'
+      }
+    },
+    Oui(){
+      if(this.listdemerde.style.display === "none") {
+        this.listdemerde.style.display = 'block'
+      }
+      else {
+        this.listdemerde.style.display = 'none'
+      }
+      alert('Test')
     }
+
   }
 }
 
@@ -117,40 +147,12 @@ export default {
 .fade-leave-to {
   opacity: 0;
 }
-.search-container {
-  display: flex;
-  justify-content: center;
-  border: 1px solid black;
-  align-items: center;
-  height: 50px;
-}
 
-form {
-  display: flex;
-  align-items: center;
-  height: 100%;
+.panel {
+  font: 16px "Open Sans", Helvetica, Arial, sans-serif;
+  border: 1px solid #22d;
+  padding: 12px;
+  width: 500px;
+  text-align: center;
 }
-
-input[type="text"] {
-  width: 60%;
-  padding: 10px;
-  border: none;
-  border-radius: 25px 0 0 25px;
-  outline: none;
-}
-
-button[type="submit"] {
-  width: 40%;
-  padding: 10px;
-  background-color: lightblue;
-  color: white;
-  border: none;
-  border-radius: 0 25px 25px 0;
-  cursor: pointer;
-}
-
-button[type="submit"]:hover {
-  background-color: blue;
-}
-
 </style>
