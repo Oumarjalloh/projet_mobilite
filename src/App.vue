@@ -7,15 +7,19 @@
         <li @click="toggleDropdown"><router-link to="/test">Test</router-link></li>
       </ul>
       <template  v-else>
-							<div class="menu_container">
+							<div>
         <div class="menu-mobile">
 									<h2>Mia</h2>								
-										<div class="screen_menu_hamburger" @click="toggleDropdown" ></div>
-          <ul v-if="showDropdown">
+									<div class="test" >
+										<div class="screen_menu_hamburger" @click="toggleDropdown"></div>
+										<ul v-if="showDropdown">
             <li><router-link to="/">Accueil</router-link></li>
             <li><router-link to="/about">A propos</router-link></li>
             <li><router-link to="/test">Test</router-link></li>
           </ul>
+									</div>
+
+
         </div>
 							</div>
 
@@ -24,27 +28,6 @@
   </div>
 		<router-view/>
 </template>
-<!-- <template>
-  <nav class="nav" id="mynav">
-    <div class="logo">
-      <a href="#">
-        <img src="">
-      </a>
-    </div>
-    <div class="menu-list">
-      <router-link to="/">Accueil</router-link> |
-      <router-link to="/about">A Propos</router-link> |
-      <router-link to="/test">Test</router-link>
-    </div>
-    <div class="menu">
-							<div class="line1"></div>
-							<div class="line2"></div>
-							<div class="line3"></div>
-			</div>
-
-  </nav>
-  <router-view/>
-</template> -->
 <script>
 export default {
   data() {
@@ -90,16 +73,8 @@ nav {
   padding: 30px;
   display: grid;
 		background-color: grey;
-		animation: 0.5s linear slidein;
 }
-@keyframes slidein {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(160deg);
-	}
-}
+
 
 nav a {
   font-weight: bold;
@@ -200,17 +175,18 @@ li {
 	transform: rotate(45deg) translate(-5px, -6px);
 }
 
-.menu-container{
-	display: flex;
-	justify-content: space;
-}
 .menu-mobile {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
 
-
+.test{
+	display: grid;
+	justify-content: flex-end;
+	padding: 40px;
+	background-color: orange;
+}
 .screen_menu_hamburger{
         width: 20px;
         height: 2px;

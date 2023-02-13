@@ -1,5 +1,12 @@
 <template>
   <div class="hello">
+    <div class="search-container">
+        <form action="#">
+          <input type="text" placeholder="Rechercher...">
+          <button type="submit">AHHAHHAHHH</button>
+
+        </form>
+      </div>
 <div style="height:600px; width:800px">
     <l-map ref="map" v-model:zoom="zoom" :center="[48.7507965, 2.2626174]">
       <l-tile-layer
@@ -29,6 +36,7 @@
   </div>
 
   </div>
+
 <!-- Liste des erps  -->
   <!-- <ul :key='erp.uuid' v-for="erp in erps">
     <li>
@@ -108,6 +116,41 @@ export default {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+.search-container {
+  display: flex;
+  justify-content: center;
+  border: 1px solid black;
+  align-items: center;
+  height: 50px;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+input[type="text"] {
+  width: 60%;
+  padding: 10px;
+  border: none;
+  border-radius: 25px 0 0 25px;
+  outline: none;
+}
+
+button[type="submit"] {
+  width: 40%;
+  padding: 10px;
+  background-color: lightblue;
+  color: white;
+  border: none;
+  border-radius: 0 25px 25px 0;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: blue;
 }
 
 </style>
