@@ -87,6 +87,7 @@ export default {
 
 </script>
 <style>
+
 .modal {
   position: fixed;
   font-family: "Montserrat", sans-serif;

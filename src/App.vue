@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <div>
     <nav>
       <ul v-if="!isMobile">
@@ -18,8 +18,9 @@
       </template>
     </nav>
   </div>
-</template> -->
-<template>
+		<router-view/>
+</template>
+<!-- <template>
   <nav class="nav" id="mynav">
     <div class="logo">
       <a href="#">
@@ -39,41 +40,40 @@
 
   </nav>
   <router-view/>
-</template>
+</template> -->
 <script>
-// export default {
-//   data() {
-//     return {
-//       isMobile: window.innerWidth <= 768,
-//       showDropdown: false
-//     };
-//   },
-//   mounted() {
-//     window.addEventListener("resize", this.handleResize);
-//   },
-//   beforeUnmount() {
-//     window.removeEventListener("resize", this.handleResize);
-//   },
-//   methods: {
-//     handleResize() {
-//       this.isMobile = window.innerWidth <= 768;
-//     },
-//     toggleDropdown() {
-//       this.showDropdown = !this.showDropdown;
-//     }
-//   }
-// };
 export default {
   data() {
     return {
-
-    }
+      isMobile: window.innerWidth <= 768,
+      showDropdown: false
+    };
   },
+  mounted() {
+    window.addEventListener("resize", this.handleResize);
+  },
+  beforeUnmount() {
+    window.removeEventListener("resize", this.handleResize);
+  },
+  methods: {
+    handleResize() {
+      this.isMobile = window.innerWidth <= 768;
+    },
+    toggleDropdown() {
+      this.showDropdown = !this.showDropdown;
+    }
+  }
+};
 
-}
 </script>
 
 <style>
+*{
+	margin: 0%;
+	padding: 0%;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -84,6 +84,7 @@ export default {
 nav {
   padding: 30px;
   display: grid;
+		background-color: grey;
 }
 
 nav a {
@@ -107,6 +108,10 @@ nav a.router-link-exact-active {
 .menu{
 	display:none;
 }
+li {
+		list-style: none;
+		text-decoration: none;
+	}
 
 @media screen and (max-width:1200px){
 	.menu-list {
