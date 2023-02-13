@@ -1,20 +1,24 @@
 <template>
-  <div>
+  <div >
     <nav>
       <ul v-if="!isMobile">
         <li @click="toggleDropdown"><router-link to="/">Accueil</router-link></li>
         <li @click="toggleDropdown"><router-link to="/about">A propos</router-link></li>
         <li @click="toggleDropdown"><router-link to="/test">Test</router-link></li>
       </ul>
-      <template v-else>
-        <div @click="toggleDropdown">
-          Menu
+      <template  v-else>
+							<div class="menu_container">
+        <div class="menu-mobile">
+									<h2>Mia</h2>								
+										<div class="screen_menu_hamburger" @click="toggleDropdown" ></div>
           <ul v-if="showDropdown">
             <li><router-link to="/">Accueil</router-link></li>
             <li><router-link to="/about">A propos</router-link></li>
             <li><router-link to="/test">Test</router-link></li>
           </ul>
         </div>
+							</div>
+
       </template>
     </nav>
   </div>
@@ -68,6 +72,8 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
 *{
 	margin: 0%;
 	padding: 0%;
@@ -75,7 +81,6 @@ export default {
 	font-family: 'Poppins', sans-serif;
 }
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
@@ -85,6 +90,15 @@ nav {
   padding: 30px;
   display: grid;
 		background-color: grey;
+		animation: 0.5s linear slidein;
+}
+@keyframes slidein {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(160deg);
+	}
 }
 
 nav a {
@@ -97,6 +111,10 @@ nav a.router-link-exact-active {
   color: #4264b9;
   text-decoration: none;
 }
+h2{
+	color: white;
+	font-family: 'Poppins', sans-serif;
+}
 .menu div{
 	width:25px;
 	height:3px;
@@ -108,6 +126,7 @@ nav a.router-link-exact-active {
 .menu{
 	display:none;
 }
+
 li {
 		list-style: none;
 		text-decoration: none;
@@ -149,9 +168,6 @@ li {
 									opacity: 0;
 					}
 
-	.menu {
-					display: block;
-	}
 
 	.nav {
 					background-color: #000;
@@ -182,5 +198,43 @@ li {
 
 .toggle .line3 {
 	transform: rotate(45deg) translate(-5px, -6px);
+}
+
+.menu-container{
+	display: flex;
+	justify-content: space;
+}
+.menu-mobile {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+
+.screen_menu_hamburger{
+        width: 20px;
+        height: 2px;
+        background-color: white;
+        border-radius: 5px;
+        z-index: 10;
+        transition: all .5s ease;
+}
+.screen_menu_hamburger::before,
+.screen_menu_hamburger::after{
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 2px;
+        background: white;
+        border-radius: 5px;
+        transition: all .5s ease;
+}
+
+.screen_menu_hamburger::before{
+    transform: translateY(-6px);
+}
+
+.screen_menu_hamburger::after{
+    transform: translateY(6px);
 }
 </style>
