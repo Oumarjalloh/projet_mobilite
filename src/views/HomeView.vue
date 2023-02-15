@@ -38,12 +38,12 @@
         layer-type="base"
         name="OpenStreetMap"
       ></l-tile-layer>
-      <div :key="marker.uuid" v-for="marker in erps">
+      <div :key="marker.uuid" v-for="marker in result">
         <l-marker  :lat-lng="[marker.geom.coordinates[1], marker.geom.coordinates[0]]" v-on:click="Popup">
       </l-marker>
                 <teleport to="body">
                   <div v-if="modal" class="modal">
-                    <ul :key='erp.uuid' v-for="erp in erps">
+                    <ul :key='erp.uuid' v-for="erp in result">
     <li>
       <ul>
         <li>{{ erp.nom }}</li>
@@ -98,7 +98,7 @@ export default {
       listdemerde: document.getElementById("awesome"),
       listwrap: document.getElementsByClassName('panel'),
       searchText: "",
-      results: [],
+      result: [],
       
     }
   },
@@ -106,9 +106,8 @@ export default {
     axios
     .get('https://acceslibre.beta.gouv.fr/api/erps/?commune=Antony&readable=true&page_size=150')
     .then((reponse) => {
-      this.results = reponse;
-      this.results = this.results.data.results
-      console.log(this.erps)
+      this.result = reponse;
+      this.result = this.result.data.results
     })
   },
   methods: {
@@ -135,14 +134,14 @@ export default {
       alert('Test')
     },
     filterResults() {
-      return this.results.filter((result) => {
-        return result.nom.toLowerCase().includes(this.searchText.toLowerCase());
+      return this.result.filter((resultos) => {
+        return resultos.nom.toLowerCase().includes(this.searchText.toLowerCase());
       });
     },
   },
   computed: {
     filteredResults() {
-      return this.searchText ? this.filterResults() : this.results;
+      return this.searchText ? this.filterResults() : this.result;
     },
   },
 }
