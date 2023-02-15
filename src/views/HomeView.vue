@@ -29,6 +29,8 @@
         </div>
 
       </div>
+      <!-- <img src="@/assets/github.png"> -->
+
 
 <div class="map">
     <l-map ref="map" v-model:zoom="zoom" :center="[48.7507965, 2.2626174]">
@@ -38,7 +40,10 @@
         name="OpenStreetMap"
       ></l-tile-layer>
       <div :key="marker.uuid" v-for="marker in result">
-        <l-marker  :lat-lng="[marker.geom.coordinates[1], marker.geom.coordinates[0]]" v-on:click="Popup(marker.slug)"></l-marker>
+        <l-marker  :lat-lng="[marker.geom.coordinates[1], marker.geom.coordinates[0]]" v-on:click="Popup(marker.slug)" icon="src/assets/github.png">
+        <l-icon icon-url="@/src/assets/logo.png">
+        </l-icon>
+        </l-marker>
         <!-- <teleport to="body">
           <div v-if="modal" class="modal">
             <ul :key='erp.uuid' v-for="erp in result">
@@ -76,13 +81,14 @@
 <script>
 import axios from 'axios'
 import "leaflet/dist/leaflet.css";
-import { LMap, LTileLayer, LMarker} from "@vue-leaflet/vue-leaflet";
+import { LMap, LTileLayer, LMarker, LIcon} from "@vue-leaflet/vue-leaflet";
 export default {
   name: 'HelloWorld',
   components: {
     LMap,
     LTileLayer,
     LMarker,
+    LIcon
   },
   data(){
     return{
@@ -93,12 +99,9 @@ export default {
       bounds: null,
       modal: false,
       searchitems: false,
-      listdemerde: document.getElementById("awesome"),
-      listwrap: document.getElementsByClassName('panel'),
       searchText: "",
       result: [],
-      hasResult: false,
-      
+      hasResult: false,         
     }
   },
   mounted(){
@@ -115,7 +118,6 @@ export default {
   },
   methods: {
     Popup(slug){
-      
       if (this.modal== false) {
         axios
         .get(`https://acceslibre.beta.gouv.fr/api/erps/${slug}`)
@@ -128,11 +130,6 @@ export default {
       }
       else {
         this.modal = false
-      }
-    },
-    Search(){
-      if (this.listdemerde == false){
-        this.listdemerde.style.visibility = 'visible'
       }
     },
     filterResults() {
@@ -151,6 +148,7 @@ export default {
         return this.searchText ? this.filterResults() : this.result;
     },
   },
+
 }
 
 
