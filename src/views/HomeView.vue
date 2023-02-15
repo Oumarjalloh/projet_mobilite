@@ -31,7 +31,7 @@
 
       </div>
 
-<div style="height:600px; width:800px">
+<div class="map">
     <l-map ref="map" v-model:zoom="zoom" :center="[48.7507965, 2.2626174]">
       <l-tile-layer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -39,23 +39,23 @@
         name="OpenStreetMap"
       ></l-tile-layer>
       <div :key="marker.uuid" v-for="marker in result">
-        <l-marker  :lat-lng="[marker.geom.coordinates[1], marker.geom.coordinates[0]]" v-on:click="Popup">
-      </l-marker>
-                <teleport to="body">
-                  <div v-if="modal" class="modal">
-                    <ul :key='erp.uuid' v-for="erp in result">
-    <li>
-      <ul>
-        <li>{{ erp.nom}}</li>
-
-      </ul>
-    </li>
-  </ul>
-    <button>Close</button>
-  </div>
-                </teleport>
+        <l-marker  :lat-lng="[marker.geom.coordinates[1], marker.geom.coordinates[0]]" v-on:click="Popup(marker.slug)"></l-marker>
+        <!-- <teleport to="body">
+          <div v-if="modal" class="modal">
+            <ul :key='erp.uuid' v-for="erp in result">
+                <li>{{ erp.nom}}</li>
+          </ul>
+          <button>Close</button>
+        </div>
+        </teleport> -->
       </div>
     </l-map>
+    <div v-if="modal" class="modal">
+        <div>
+          {{ acces.nom }}
+        </div>
+        <button @click="modal = false">Close</button>
+    </div>
   </div>
 
   </div>
@@ -114,8 +114,16 @@ export default {
     // })
   },
   methods: {
-    Popup(){
+    Popup(slug){
+      
       if (this.modal== false) {
+        axios
+        .get(`https://acceslibre.beta.gouv.fr/api/erps/${slug}`)
+        .then((reponse) => {
+          this.acces = reponse;
+          this.acces = this.acces.data
+          console.log(this.acces)
+        })
         this.modal = true
       }
       else {
@@ -145,16 +153,17 @@ export default {
 <style>
 
 .modal {
-  position: fixed;
+  position: absolute;
   font-family: "Montserrat", sans-serif;
   color: white;
   background-color: orange;
-  border-radius: 2ch;
-  z-index: 999;
-  top: 20%;
-  left: 50%;
-  width: 300px;
-  margin-left: -150px;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  z-index: 9990;
+  bottom: 0;
+  margin: 0 auto;
+  width: 100%;
+  padding: 20px;
 }
 .fade-enter-active,
 .fade-leave-active {
@@ -172,5 +181,11 @@ export default {
   padding: 12px;
   width: 500px;
   text-align: center;
+}
+
+.map {
+  width: 100%;
+  height: 60vh;
+  position: relative;
 }
 </style>
