@@ -9,12 +9,24 @@
       </div> -->
       <div>
         <div class="items-search">
-          <input type="text" v-model="input" placeholder="Search..." v >
+          <input type="text" v-model="searchText" placeholder="Search..." v >
           <button type="submit" v-on:click="Oui">Rechercher</button>
+          <search @results="filterResults"></search>
+          <ul>
+      <li v-for="result in filteredResults" :key="result.id">
+        {{ result.nom }}
+      </li>
+    </ul>
+          <!-- <ul>
+      <li v-for="erp in erps" :key="erp.id">
+        {{ erp.nom }}
+      </li>
+    </ul> -->
 
-          <div class="panel" id="awesome" v-for="items in erps" :key="items">
+
+          <!-- <div class="panel" id="awesome" v-for="items in erps" :key="items">
        <p>{{ items.nom }}</p>
-       </div>
+       </div> -->
         </div>
 
       </div>
@@ -84,15 +96,18 @@ export default {
       modal: false,
       searchitems: false,
       listdemerde: document.getElementById("awesome"),
-      listwrap: document.getElementsByClassName('panel')
+      listwrap: document.getElementsByClassName('panel'),
+      searchText: "",
+      results: [],
+      
     }
   },
   mounted(){
     axios
     .get('https://acceslibre.beta.gouv.fr/api/erps/?commune=Antony&readable=true&page_size=150')
     .then((reponse) => {
-      this.erps = reponse;
-      this.erps = this.erps.data.results
+      this.results = reponse;
+      this.results = this.results.data.results
       console.log(this.erps)
     })
   },
@@ -118,10 +133,20 @@ export default {
         this.listdemerde.style.display = 'none'
       }
       alert('Test')
-    }
-
-  }
+    },
+    filterResults() {
+      return this.results.filter((result) => {
+        return result.nom.toLowerCase().includes(this.searchText.toLowerCase());
+      });
+    },
+  },
+  computed: {
+    filteredResults() {
+      return this.searchText ? this.filterResults() : this.results;
+    },
+  },
 }
+
 
 </script>
 <style>
