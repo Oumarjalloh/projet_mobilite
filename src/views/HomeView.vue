@@ -76,7 +76,7 @@
 <script>
 import axios from 'axios'
 import "leaflet/dist/leaflet.css";
-import { LMap, LTileLayer, LMarker, } from "@vue-leaflet/vue-leaflet";
+import { LMap, LTileLayer, LMarker} from "@vue-leaflet/vue-leaflet";
 export default {
   name: 'HelloWorld',
   components: {
