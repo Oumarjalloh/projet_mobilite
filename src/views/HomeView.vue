@@ -53,7 +53,7 @@
         <div>
           {{ acces.nom }}
         </div>
-        <button @click="modal = false">Close</button>
+        <button @click="modal = false">Fermer</button>
     </div>
   </div>
 
