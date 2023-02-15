@@ -9,14 +9,13 @@
       </div> -->
       <div>
         <div class="items-search">
-          <input type="text" v-model="searchText" placeholder="Search..." v >
-          <button type="submit">Rechercher</button>
+          <input type="text" v-model="searchText" placeholder="Search..." class="search">
           <search @results="filterResults"></search>
-          <ul>
-      <li v-for="result in filteredResults" :key="result.id">
-        {{ result.nom }}
-      </li>
-    </ul>
+          <ul v-show="hasResult">
+            <li v-for="result in filteredResults" :key="result.id">
+              {{ result.nom }}
+            </li>
+          </ul>
           <!-- <ul>
       <li v-for="erp in erps" :key="erp.id">
         {{ erp.nom }}
@@ -98,6 +97,7 @@ export default {
       listwrap: document.getElementsByClassName('panel'),
       searchText: "",
       result: [],
+      hasResult: false,
       
     }
   },
@@ -136,14 +136,19 @@ export default {
       }
     },
     filterResults() {
-      return this.result.filter((resultos) => {
-        return resultos.nom.toLowerCase().includes(this.searchText.toLowerCase());
-      });
+        if(this.searchText.length > 2) {
+          this.hasResult = true;
+          return this.result.filter((resultos) => {
+            return resultos.nom.toLowerCase().includes(this.searchText.toLowerCase());
+          });
+        } else {
+          this.hasResult = false;
+        }
     },
   },
   computed: {
     filteredResults() {
-      return this.searchText ? this.filterResults() : this.result;
+        return this.searchText ? this.filterResults() : this.result;
     },
   },
 }
@@ -187,5 +192,32 @@ export default {
   width: 100%;
   height: 60vh;
   position: relative;
+}
+
+.search {
+  width: 90%;
+  margin: 20px auto;
+  display: block;
+  height: 40px;
+  font-size: 20px;
+  padding: 0 16px;
+  border-radius: 40px;
+  box-shadow: 0 8px 16px rgba(110, 110, 110, 0.206);
+  border: none;
+}
+
+.items-search ul {
+  width: 90%;
+  margin: 10px auto;
+  max-height: 250px;
+  overflow-y: scroll;
+}
+
+.items-search ul li {
+  list-style: none;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin: 5px 0;
+  cursor: pointer;
 }
 </style>
