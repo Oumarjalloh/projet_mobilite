@@ -10,7 +10,7 @@
       <div>
         <div class="items-search">
           <input type="text" v-model="searchText" placeholder="Search..." v >
-          <button type="submit" v-on:click="Oui">Rechercher</button>
+          <button type="submit">Rechercher</button>
           <search @results="filterResults"></search>
           <ul>
       <li v-for="result in filteredResults" :key="result.id">
@@ -46,13 +46,12 @@
                     <ul :key='erp.uuid' v-for="erp in result">
     <li>
       <ul>
-        <li>{{ erp.nom }}</li>
+        <li>{{ erp.nom}}</li>
 
       </ul>
     </li>
   </ul>
-
-    <button @click="open = false">Close</button>
+    <button>Close</button>
   </div>
                 </teleport>
       </div>
@@ -109,6 +108,10 @@ export default {
       this.result = reponse;
       this.result = this.result.data.results
     })
+    // .then((param) => {
+    //   this.erps = param;
+    //   this.erps = this.erps.data.results
+    // })
   },
   methods: {
     Popup(){
@@ -123,15 +126,6 @@ export default {
       if (this.listdemerde == false){
         this.listdemerde.style.visibility = 'visible'
       }
-    },
-    Oui(){
-      if(this.listdemerde.style.display === "none") {
-        this.listdemerde.style.display = 'block'
-      }
-      else {
-        this.listdemerde.style.display = 'none'
-      }
-      alert('Test')
     },
     filterResults() {
       return this.result.filter((resultos) => {

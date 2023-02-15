@@ -7,7 +7,6 @@
         <li @click="toggleDropdown"><router-link to="/test">Test</router-link></li>
       </ul>
       <template  v-else>
-							<div>
         <div class="menu-mobile">
 									<h2>Mia</h2>								
 									<div class="test" >
@@ -18,11 +17,7 @@
             <li><router-link to="/test">Test</router-link></li>
           </ul>
 									</div>
-
-
         </div>
-							</div>
-
       </template>
     </nav>
   </div>
@@ -72,7 +67,7 @@ export default {
 nav {
   padding: 30px;
   display: grid;
-		background-color: grey;
+		background-color: rgb(208, 208, 208);
 }
 
 
