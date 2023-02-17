@@ -42,6 +42,7 @@
       <div :key="marker.uuid" v-for="marker in result">
         <l-marker  :lat-lng="[marker.geom.coordinates[1], marker.geom.coordinates[0]]" v-on:click="Popup(marker.slug)">
 
+
         </l-marker>
         <!-- <teleport to="body">
           <div v-if="modal" class="modal">
@@ -87,6 +88,7 @@ export default {
     LMap,
     LTileLayer,
     LMarker,
+    
     
   },
   data(){

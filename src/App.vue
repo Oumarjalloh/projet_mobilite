@@ -16,6 +16,7 @@
             <li><router-link to="/about">A propos</router-link></li>
             <li><router-link to="/test">Test</router-link></li>
 												<li><router-link to="/param">Paramètres</router-link></li>
+												<li><router-link to="/favoris">Favoris</router-link></li>
           </ul>
 									</div>
         </div>
