@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :style="{fontSize: changeSize}">
     <nav>
       <ul v-if="!isMobile">
         <li @click="toggleDropdown"><router-link to="/">Accueil</router-link></li>
@@ -8,7 +8,7 @@
       </ul>
       <template  v-else>
         <div class="menu-mobile">
-									<h2>Mia</h2>								
+									<h2 >Mia</h2>								
 									<div class="test" >
 										<div class="screen_menu_hamburger" @click="toggleDropdown"></div>
 										<ul v-if="showDropdown">
@@ -46,7 +46,12 @@ export default {
     toggleDropdown() {
       this.showDropdown = !this.showDropdown;
     },
+  },
+		computed: {
+  changeSize: function(){
+   return this.fontSize + "px";
   }
+ }
 };
 
 </script>

@@ -4,12 +4,13 @@
  <button @click="fontSize += 3"> <span>Guidage vocal</span></button>
  <button> <span>Main Gauche/Droite</span></button>
  <button> <span>Haut contraste</span></button>
- <button> <span>Mode sombre</span></button>
  <input type="range" min="1" max="100" v-model='fontSize'>
 
 </div>
-<span>{{ fontSize }}</span>
+<h2 :style="{fontSize: changeSize}">TEST TITRE</h2>
 <p :style="{fontSize: changeSize}">Test changement de taille texte</p>
+
+
 </template>
 <script>
 export default {
@@ -33,6 +34,9 @@ h1{
  text-align: center;
  color: #FF715B;
 }
+h2{
+ color: var(--color-text);
+}
 .container-param{
  display: grid;
  align-items: center;
@@ -52,5 +56,6 @@ span {
 }
 p {
  font-size: 16px;
+ color: var(--color-text);
 }
 </style>
