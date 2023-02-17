@@ -9,7 +9,7 @@
       </div> -->
       <div>
         <div class="items-search">
-          <input type="text" v-model="searchText" placeholder="Search..." class="search">
+          <input type="text" v-model="searchText" placeholder="Rechercher..." class="search">
           <search @results="filterResults"></search>
           <ul v-show="hasResult">
             <li v-for="result in filteredResults" :key="result.id">
@@ -40,9 +40,8 @@
         name="OpenStreetMap"
       ></l-tile-layer>
       <div :key="marker.uuid" v-for="marker in result">
-        <l-marker  :lat-lng="[marker.geom.coordinates[1], marker.geom.coordinates[0]]" v-on:click="Popup(marker.slug)" icon="src/assets/github.png">
-        <l-icon icon-url="@/src/assets/logo.png">
-        </l-icon>
+        <l-marker  :lat-lng="[marker.geom.coordinates[1], marker.geom.coordinates[0]]" v-on:click="Popup(marker.slug)">
+
         </l-marker>
         <!-- <teleport to="body">
           <div v-if="modal" class="modal">
@@ -81,14 +80,14 @@
 <script>
 import axios from 'axios'
 import "leaflet/dist/leaflet.css";
-import { LMap, LTileLayer, LMarker, LIcon} from "@vue-leaflet/vue-leaflet";
+import { LMap, LTileLayer, LMarker, } from "@vue-leaflet/vue-leaflet";
 export default {
   name: 'HelloWorld',
   components: {
     LMap,
     LTileLayer,
     LMarker,
-    LIcon
+    
   },
   data(){
     return{
@@ -133,7 +132,7 @@ export default {
       }
     },
     filterResults() {
-        if(this.searchText.length > 2) {
+        if(this.searchText.length >= 1) {
           this.hasResult = true;
           return this.result.filter((resultos) => {
             return resultos.nom.toLowerCase().includes(this.searchText.toLowerCase());
@@ -196,6 +195,7 @@ export default {
   width: 90%;
   margin: 20px auto;
   display: block;
+  background-color: var(--bg-search);
   height: 40px;
   font-size: 20px;
   padding: 0 16px;
@@ -203,6 +203,16 @@ export default {
   box-shadow: 0 8px 16px rgba(110, 110, 110, 0.206);
   border: none;
 }
+input {
+  color: var(--color-text);
+}
+input::placeholder {
+  color: var(--color-text);
+}
+input::type {
+  color: var(--color-text);
+}
+
 
 .items-search ul {
   width: 90%;
