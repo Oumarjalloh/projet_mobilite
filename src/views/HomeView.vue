@@ -41,9 +41,12 @@
       ></l-tile-layer>
       <div :key="marker.uuid" v-for="marker in result">
         <l-marker  :lat-lng="[marker.geom.coordinates[1], marker.geom.coordinates[0]]" v-on:click="Popup(marker.slug)">
-
-
         </l-marker>
+        <l-circle 
+      :lat-lng="circle.center"
+      :radius="circle.radius"
+      :color="circle.color" />
+
         <!-- <teleport to="body">
           <div v-if="modal" class="modal">
             <ul :key='erp.uuid' v-for="erp in result">
@@ -53,13 +56,20 @@
         </div>
         </teleport> -->
       </div>
+
+
+
     </l-map>
     <div v-if="modal" class="modal">
         <div>
-          {{ acces.nom }}
-        </div>
-        <button @click="modal = false">Fermer</button>
+         <h3>{{ acces.nom }}</h3> 
+        <p>{{ acces.activite.nom }}</p>
+        <p>{{ acces.adresse }}</p>
+         <a href="tel:{{ acces.telephone }}">{{acces.telephone}}</a>
+        </div> 
+        <button @click="modal = false" class="btn-modal">Fermer</button>
     </div>
+          <button @click="getLocalisation()">Loc</button>
   </div>
 
   </div>
@@ -81,13 +91,14 @@
 <script>
 import axios from 'axios'
 import "leaflet/dist/leaflet.css";
-import { LMap, LTileLayer, LMarker, } from "@vue-leaflet/vue-leaflet";
+import { LMap, LTileLayer, LMarker, LCircle} from "@vue-leaflet/vue-leaflet";
 export default {
   name: 'HelloWorld',
   components: {
     LMap,
     LTileLayer,
     LMarker,
+    LCircle
     
     
   },
@@ -102,8 +113,14 @@ export default {
       searchitems: false,
       searchText: "",
       result: [],
-      hasResult: false,         
-    }
+      hasResult: false,
+      circle: {
+        center: [48.8932633, 2.2269079],
+        radius: 100,
+        color: 'red',
+        fillOpacity: 0.2
+          }
+      }
   },
   mounted(){
     axios
@@ -115,7 +132,8 @@ export default {
     // .then((param) => {
     //   this.erps = param;
     //   this.erps = this.erps.data.results
-    // })
+    // }),
+
   },
   methods: {
     Popup(slug){
@@ -143,6 +161,20 @@ export default {
           this.hasResult = false;
         }
     },
+    getLocalisation(){
+      if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(this.showPosition)
+      }
+      else{
+        this.error = "On a pas pu vous localiser"
+      }
+    },
+    showPosition: function (position){
+      this.lat = position.coords.lattitude;
+      this.lon = position.coords.longitude;
+      console.log (position)
+    }
+
   },
   computed: {
     filteredResults() {
@@ -157,10 +189,12 @@ export default {
 <style>
 
 .modal {
+  display: grid;
   position: absolute;
   font-family: "Montserrat", sans-serif;
   color: white;
-  background-color: orange;
+  background-color: white;
+  border: 1px #FF715B solid;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   z-index: 9990;
@@ -168,6 +202,18 @@ export default {
   margin: 0 auto;
   width: 100%;
   padding: 20px;
+}
+.btn-modal{
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  place-self: center;
+  background-color: #FF715B;
+  font-family: "Monserrat", sans-serif;
+  color: white;
+  padding: 10px;
+  width: 40%;
 }
 .fade-enter-active,
 .fade-leave-active {
@@ -229,5 +275,8 @@ input::type {
   border: 1px solid #ccc;
   margin: 5px 0;
   cursor: pointer;
+}
+h3 {
+  color: var(--color-titre);
 }
 </style>

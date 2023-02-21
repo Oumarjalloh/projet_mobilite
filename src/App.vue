@@ -5,6 +5,8 @@
         <li @click="toggleDropdown"><router-link to="/">Accueil</router-link></li>
         <li @click="toggleDropdown"><router-link to="/about">A propos</router-link></li>
         <li @click="toggleDropdown"><router-link to="/test">Test</router-link></li>
+								<li @click="toggleDropdown"><router-link to="/param">Paramètres</router-link></li>
+								<li @click="toggleDropdown"><router-link to="/favoris">Favoris</router-link></li>
       </ul>
       <template  v-else>
         <div class="menu-mobile">
