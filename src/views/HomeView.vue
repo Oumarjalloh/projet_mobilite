@@ -1,12 +1,16 @@
 <template>
-  <div class="hello">
-    <!-- <div class="search-container">
-        <form action="#">
-          <input type="text" placeholder="Rechercher...">
-          <button type="submit">AHHAHHAHHH</button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.79.0/dist/L.Control.Locate.min.css" />
+  <div class="popup">
+    <h2>ATTENTION</h2>
+    <p>Vous avez refusé l'accès pour que l'on vous localise.<br>Veuillez accepter la geolocalisation pour profiter des fonctionnalité de navigation</p>
+    <div class="ensemble-btn">
+      <button class="btn-yes">Accepter</button>
+      <button @click = false class="btn-no">Fermer</button>
+    </div>
 
-        </form>
-      </div> -->
+  </div>
+
+  <div class="hello">
       <div>
         <div class="items-search">
           <input type="text" v-model="searchText" placeholder="Rechercher..." class="search">
@@ -16,22 +20,8 @@
               {{ result.nom }}
             </li>
           </ul>
-          <!-- <ul>
-      <li v-for="erp in erps" :key="erp.id">
-        {{ erp.nom }}
-      </li>
-    </ul> -->
-
-
-          <!-- <div class="panel" id="awesome" v-for="items in erps" :key="items">
-       <p>{{ items.nom }}</p>
-       </div> -->
         </div>
-
       </div>
-      <!-- <img src="@/assets/github.png"> -->
-
-
 <div class="map">
     <l-map ref="map" v-model:zoom="zoom" :center="[48.7507965, 2.2626174]">
       <l-tile-layer
@@ -42,19 +32,10 @@
       <div :key="marker.uuid" v-for="marker in result">
         <l-marker  :lat-lng="[marker.geom.coordinates[1], marker.geom.coordinates[0]]" v-on:click="Popup(marker.slug)">
         </l-marker>
-        <l-circle 
-      :lat-lng="circle.center"
+        <l-circle v-for="position in circle.center" :key="position.showPosition"
+      :lat-lng="[position.coords[0],position.coords[1]]"
       :radius="circle.radius"
       :color="circle.color" />
-
-        <!-- <teleport to="body">
-          <div v-if="modal" class="modal">
-            <ul :key='erp.uuid' v-for="erp in result">
-                <li>{{ erp.nom}}</li>
-          </ul>
-          <button>Close</button>
-        </div>
-        </teleport> -->
       </div>
 
 
@@ -74,21 +55,10 @@
 
   </div>
 
-<!-- Liste des erps  -->
-  <!-- <ul :key='erp.uuid' v-for="erp in erps">
-    <li>
-      <ul>
-        <li>{{ erp.nom }}</li>
-        <li>{{ erp.activite.nom }}</li>
-        <li>Latitude : {{ erp.geom.coordinates[1] }}</li>
-        <li>Longitude : {{ erp.geom.coordinates[0] }}</li>
-      </ul>
-    </li>
-  </ul> -->
-
 </template>
 
 <script>
+
 import axios from 'axios'
 import "leaflet/dist/leaflet.css";
 import { LMap, LTileLayer, LMarker, LCircle} from "@vue-leaflet/vue-leaflet";
@@ -115,11 +85,11 @@ export default {
       result: [],
       hasResult: false,
       circle: {
-        center: [48.8932633, 2.2269079],
-        radius: 100,
+        center: [],
+        radius: 1000,
         color: 'red',
         fillOpacity: 0.2
-          }
+          },
       }
   },
   mounted(){
@@ -135,7 +105,10 @@ export default {
     // }),
 
   },
+
+
   methods: {
+   
     Popup(slug){
       if (this.modal== false) {
         axios
@@ -163,17 +136,18 @@ export default {
     },
     getLocalisation(){
       if(navigator.geolocation){
-        navigator.geolocation.getCurrentPosition(this.showPosition)
+        navigator.geolocation.getCurrentPosition(this.showPosition, this.Error)
       }
-      else{
-        this.error = "On a pas pu vous localiser"
-      }
+    },
+    Error(){
+      alert('Veuillez accepter la localisation de votre position')
     },
     showPosition: function (position){
       this.lat = position.coords.lattitude;
-      this.lon = position.coords.longitude;
+      this.lon = position.coords.lattitude;
       console.log (position)
-    }
+    },
+
 
   },
   computed: {
@@ -187,7 +161,34 @@ export default {
 
 </script>
 <style>
+.popup{
+  display: grid;
+  justify-content: center;
+  text-align: center;
+  margin: 20px;
+}
+.popup h2{
+  color: red;
+  font-size: 32px;
+}
+.ensemble-btn{
+  margin-top: 10px;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  justify-content: space-between;
+}
 
+.btn-yes{
+  background-color: rgb(30, 184, 30);
+  color: white;
+  width: 40%;
+}
+.btn-no{
+  background-color: rgb(196, 33, 33);
+  color: white;
+  width: 40%;
+}
 .modal {
   display: grid;
   position: absolute;
