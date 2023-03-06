@@ -1,13 +1,9 @@
 <template>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.79.0/dist/L.Control.Locate.min.css" />
-  <div class="popup">
-    <h2>ATTENTION</h2>
-    <p>Vous avez refusé l'accès pour que l'on vous localise.<br>Veuillez accepter la geolocalisation pour profiter des fonctionnalité de navigation</p>
-    <div class="ensemble-btn">
-      <button class="btn-yes">Accepter</button>
-      <button @click = false class="btn-no">Fermer</button>
-    </div>
+  <link rel="stylesheet" href="leaflet-routing-machine.css" />
 
+  <div  class="popup" >
+    <p id="haha"></p>
   </div>
 
   <div class="hello">
@@ -32,11 +28,12 @@
       <div :key="marker.uuid" v-for="marker in result">
         <l-marker  :lat-lng="[marker.geom.coordinates[1], marker.geom.coordinates[0]]" v-on:click="Popup(marker.slug)">
         </l-marker>
-        <l-circle v-for="position in circle.center" :key="position.showPosition"
-      :lat-lng="[position.coords[0],position.coords[1]]"
-      :radius="circle.radius"
-      :color="circle.color" />
+        
       </div>
+      <l-circle
+          :lat-lng=[circle.lat,circle.lon]
+          :radius="circle.radius"
+          :color="circle.color" />
 
 
 
@@ -61,7 +58,7 @@
 
 import axios from 'axios'
 import "leaflet/dist/leaflet.css";
-import { LMap, LTileLayer, LMarker, LCircle} from "@vue-leaflet/vue-leaflet";
+import { LMap, LTileLayer, LMarker, LCircle,} from "@vue-leaflet/vue-leaflet";
 export default {
   name: 'HelloWorld',
   components: {
@@ -76,6 +73,7 @@ export default {
     return{
       erps: null,
       acces: null,
+      haha: null,
       zoom: 13,
       center: [48.7507965, 2.2626174],
       bounds: null,
@@ -83,12 +81,13 @@ export default {
       searchitems: false,
       searchText: "",
       result: [],
-      hasResult: false,
+      hasResult: false, 
       circle: {
-        center: [],
-        radius: 1000,
+        lat: "",
+        lon: "",
+        radius: 10,
         color: 'red',
-        fillOpacity: 0.2
+        fillOpacity: 0.5
           },
       }
   },
@@ -140,12 +139,12 @@ export default {
       }
     },
     Error(){
-      alert('Veuillez accepter la localisation de votre position')
+      alert('OK')
     },
     showPosition: function (position){
-      this.lat = position.coords.lattitude;
-      this.lon = position.coords.lattitude;
-      console.log (position)
+      this.circle.lat = position.coords.latitude;
+      this.circle.lon = position.coords.longitude;
+      console.log (position, this.circle.lat, this.circle.lon)
     },
 
 
