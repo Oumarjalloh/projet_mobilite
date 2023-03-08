@@ -13,13 +13,14 @@
           <search @results="filterResults"></search>
           <ul v-show="hasResult">
             <li v-for="result in filteredResults" :key="result.id">
-              {{ result.nom }}
+              {{ result.nom }} - 
+              {{  result.activite.nom }}
             </li>
           </ul>
         </div>
       </div>
 <div class="map">
-    <l-map ref="map" v-model:zoom="zoom" :center="[48.7507965, 2.2626174]">
+    <l-map ref="map" v-model:zoom="zoom" :center="[48.7507965, 2.2626174]" :options="{zoomControl: false}">
       <l-tile-layer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         layer-type="base"
@@ -36,7 +37,7 @@
           :color="circle.color" />
 
 
-
+          <l-control-zoom position="bottomright"  ></l-control-zoom>
     </l-map>
     <div v-if="modal" class="modal">
         <div>
@@ -58,16 +59,15 @@
 
 import axios from 'axios'
 import "leaflet/dist/leaflet.css";
-import { LMap, LTileLayer, LMarker, LCircle,} from "@vue-leaflet/vue-leaflet";
+import { LMap, LTileLayer, LMarker, LCircle,LControlZoom} from "@vue-leaflet/vue-leaflet";
 export default {
   name: 'HelloWorld',
   components: {
     LMap,
     LTileLayer,
     LMarker,
-    LCircle
-    
-    
+    LCircle,
+    LControlZoom
   },
   data(){
     return{
