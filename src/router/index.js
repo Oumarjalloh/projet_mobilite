@@ -32,7 +32,13 @@ const routes = [
     path: '/favoris',
     name: 'favoris',
     component: FavorisView
-  }
+  },
+  // {
+  //   path: '/edit/:id',
+  //   name: 'Edit',
+  //   component: Edit
+  // }
+
 ]
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

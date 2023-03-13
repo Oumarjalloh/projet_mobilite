@@ -1,25 +1,27 @@
 <template>
-  <div :style="{fontSize: changeSize}">
+ <div :style="{fontSize: changeSize}">
     <nav>
       <ul v-if="!isMobile">
         <li @click="toggleDropdown"><router-link to="/">Accueil</router-link></li>
         <li @click="toggleDropdown"><router-link to="/about">A propos</router-link></li>
-        <li @click="toggleDropdown"><router-link to="/test">Test</router-link></li>
+        <li @click="toggleDropdown"><router-link to="/test">Inscription/Connexion</router-link></li>
 								<li @click="toggleDropdown"><router-link to="/param">Paramètres</router-link></li>
 								<li @click="toggleDropdown"><router-link to="/favoris">Favoris</router-link></li>
       </ul>
       <template  v-else>
         <div class="menu-mobile">
-									<h2 >Mia</h2>								
-									<div class="test" >
+									<a href=""><router-link to="/test"><img src="./assets/logo-user.png"></router-link></a>
+									<img src="./assets/logo-mia-light.png" class="logo-mia">
+									<div>
 										<div class="screen_menu_hamburger" @click="toggleDropdown"></div>
-										<ul v-if="showDropdown">
+										
+												<ul v-if="showDropdown" class="sub-menu">
             <li><router-link to="/">Accueil</router-link></li>
             <li><router-link to="/about">A propos</router-link></li>
-            <li><router-link to="/test">Test</router-link></li>
 												<li><router-link to="/param">Paramètres</router-link></li>
 												<li><router-link to="/favoris">Favoris</router-link></li>
           </ul>
+					
 									</div>
         </div>
       </template>
@@ -28,6 +30,7 @@
 		<router-view/>
 </template>
 <script>
+
 export default {
   data() {
     return {
@@ -64,18 +67,17 @@ export default {
 
 :root {
 	--bg-primary: white;
-	--color-text: black;
+	--color-text: #0F1C62;
 	--color-titre: #FF715B;
 	--color-menu: white;
 	--color-menu-active: #FF715B;
-	--bg-menu: rgb(208, 208, 208);
 	--bg-search: white
 }
 *{
 	margin: 0%;
 	padding: 0%;
 	box-sizing: border-box;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Montserrat', sans-serif;
 }
 body{
 	background-color: var(--bg-primary);
@@ -96,7 +98,7 @@ nav {
 
 nav a {
   font-weight: bold;
-  color: var(--color-menu);
+  color: var(--color-text);
   text-decoration: none;
 }
 
@@ -143,6 +145,9 @@ span{
 	background: none;
 	color: var(--color-text);
 }
+.logo-mia{
+	width: 20%;
+}
 @media screen and (max-width:1200px){
 	.menu-list {
 					width: 55%;
@@ -159,13 +164,7 @@ span{
 	html, body {
 					position: relative;
 	}
-	.test{
-	display: grid;
-	justify-content: flex-start;
-	padding: 40px;
-	background: none;
-	gap: 20px;
-}
+
 
 	.menu-list {
 					position: absolute;
@@ -208,8 +207,7 @@ span{
 	display: flex;
 	justify-content: space-between;
 	align-items: center;		
-	background-color: var(--bg-menu);
-
+	background-color: white;
 	
 }
 
@@ -217,7 +215,7 @@ span{
 .screen_menu_hamburger{
         width: 20px;
         height: 2px;
-        background-color: white;
+        background-color:  #0F1C62;
         border-radius: 5px;
         z-index: 10;
         transition: all .5s ease;
@@ -228,7 +226,7 @@ span{
         position: absolute;
         width: 20px;
         height: 2px;
-        background: white;
+        background: #0F1C62;
         border-radius: 5px;
         transition: all 0.5s ease;
 }
@@ -248,5 +246,13 @@ span{
 			--color-text: white;
 			--bg-search: #140200
 		}
+}
+
+.sub-menu {
+  position: relative;
+  top: calc(100% + 18px);
+  left: 0%;
+  transform: translateY(30%);
+  border-radius: 0px 0px 16px 16px;
 }
 </style>

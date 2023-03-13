@@ -43,13 +43,7 @@ h2{
  margin: 20px ;
  gap: 20px;
 }
-button {
- background-color: #7692FF;
- border: none;
- border-radius: 20px;
- padding: 10px;
- width: 70%;
-}
+
 span {
  color: white;
  font-weight: 700;
