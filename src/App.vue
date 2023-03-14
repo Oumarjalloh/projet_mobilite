@@ -10,18 +10,19 @@
       </ul>
       <template  v-else>
         <div class="menu-mobile">
-									<a href=""><router-link to="/test"><img src="./assets/logo-user.png"></router-link></a>
+									<router-link to="/test"><img src="./assets/logo-user.png"></router-link>
+									<!-- <router-link to="/home" class="home"></router-link> -->
 									<img src="./assets/logo-mia-light.png" class="logo-mia">
-									<div>
-										<div class="screen_menu_hamburger" @click="toggleDropdown"></div>
-										
-												<ul v-if="showDropdown" class="sub-menu">
-            <li><router-link to="/">Accueil</router-link></li>
+									
+										<div class="screen_menu_hamburger" @click="toggleDropdown">
+									<div class="sub-menu">
+										<ul v-if="showDropdown" >
+            <li><router-link to="/home">Accueil</router-link></li>
             <li><router-link to="/about">A propos</router-link></li>
 												<li><router-link to="/param">Paramètres</router-link></li>
 												<li><router-link to="/favoris">Favoris</router-link></li>
           </ul>
-					
+									</div>
 									</div>
         </div>
       </template>
@@ -68,7 +69,6 @@ export default {
 :root {
 	--bg-primary: white;
 	--color-text: #0F1C62;
-	--color-titre: #FF715B;
 	--color-menu: white;
 	--color-menu-active: #FF715B;
 	--bg-search: white
@@ -106,19 +106,14 @@ nav a.router-link-exact-active {
   color: var(--color-menu-active);
   text-decoration: none;
 }
-h1{
-	color: var(--color-titre);
-	font-family: 'Poppins', sans-serif;
-}
+
 h2{
 	color: white;
-	font-family: 'Poppins', sans-serif;
 	background: none;
 }
 .menu div{
 	width:25px;
 	height:3px;
-	margin:5px;
 	background-color:#fff;
 	z-index:3;
 }
@@ -141,12 +136,11 @@ li {
 a{
 background: none;
 	}
-span{
-	background: none;
-	color: var(--color-text);
-}
+
 .logo-mia{
-	width: 20%;
+	width: 30%;
+	position: relative;
+	top: -5px;
 }
 @media screen and (max-width:1200px){
 	.menu-list {
@@ -205,8 +199,8 @@ span{
 
 .menu-mobile {
 	display: flex;
-	justify-content: space-between;
-	align-items: center;		
+	align-items: center;	
+	justify-content: space-between;	
 	background-color: white;
 	
 }
@@ -217,7 +211,7 @@ span{
         height: 2px;
         background-color:  #0F1C62;
         border-radius: 5px;
-        z-index: 10;
+        z-index: 10000;
         transition: all .5s ease;
 }
 .screen_menu_hamburger::before,
@@ -233,10 +227,11 @@ span{
 
 .screen_menu_hamburger::before{
     transform: translateY(-6px);
-}
+				position: fixed;
 
+}
 .screen_menu_hamburger::after{
-    transform: translateY(6px);
+    transform: translateY(-12px);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -248,11 +243,18 @@ span{
 		}
 }
 
-.sub-menu {
+.sub-menu{
   position: relative;
-  top: calc(100% + 18px);
-  left: 0%;
-  transform: translateY(30%);
+  right: 80px;
+		top: 30px;
+		z-index: 9999;
+		background-color: white;
+		padding-left: 10px;
+		padding-right: 10px;
+		width: 150px;
   border-radius: 0px 0px 16px 16px;
+}
+.sub-menu li:hover{
+	color: #FF715B;
 }
 </style>

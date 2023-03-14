@@ -3,10 +3,11 @@ import HomeView from '../views/HomeView.vue'
 import TestView from '../views/TestView.vue'
 import ParamView from '../views/ParamView.vue'
 import FavorisView from '../views/FavorisView.vue'
+import AddFavorisView from '../views/AddFavoris.vue'
 
 const routes = [
   {
-    path: '/',
+    path: '/home',
     name: 'home',
     component: HomeView
   },
@@ -38,6 +39,11 @@ const routes = [
   //   name: 'Edit',
   //   component: Edit
   // }
+  {
+    path: '/addfavoris',
+    name: 'addfavoris',
+    component: AddFavorisView
+  },
 
 ]
 const router = createRouter({

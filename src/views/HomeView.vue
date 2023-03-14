@@ -1,11 +1,6 @@
 <template>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.79.0/dist/L.Control.Locate.min.css" />
   <link rel="stylesheet" href="leaflet-routing-machine.css" />
-
-  <div  class="popup" >
-    <p id="haha"></p>
-  </div>
-
   <div class="hello">
 <!-- 
       <div>
@@ -66,7 +61,7 @@
         </div>
     </div>
     </l-map>
-    <!-- <div class="container-filtre" >
+    <div class="container-filtre" >
       <button class="btn-filter">Boulangeries</button>
       <button class="btn-filter">Restaurants</button>
       <div v-for="filtre in result" :key="filtre.uuid">
@@ -74,16 +69,13 @@
       </div>
     </div>
       <div >
-        <button class="btn-filter">Supermarchés</button>
-        <button class="btn-filter">Epiceries</button>
-        <button class="btn-filter">Ecoles</button>
        <div v-if="filtre" class="filtre-popup">
         <button class="btn-filter">{{ accesb.activite.nom }}</button>
         <button @click="filtre = false" class="btn-close">Fermer</button>
 
        </div>
   
-        </div> -->
+        </div>
 
 
         <div class="items-search" :class="{ active : isActive}" @click="isActive = true" >
@@ -446,6 +438,9 @@ align-items: center;
   border-top-right-radius: 16px;
   justify-content: space-between;
   margin: 0;
+  position: relative;
+  top: -300px;
+  z-index: 9999999;
 }
 
 .items-search img{
