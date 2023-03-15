@@ -43,7 +43,9 @@ const routes = [
   {
     path: '/addfavoris',
     name: 'addfavoris',
-    component: AddFavorisView
+    component: AddFavorisView,
+    props: route => ({ datas: route.query.datas })
+
   },
   {
     path: '/lrouting',

@@ -17,7 +17,12 @@
     <svg style="color: rgb(15, 28, 98);" xmlns="http://www.w3.org/2000/svg" width="52" height="35" fill="currentColor" class="bi bi-bookmark-fill" viewBox="0 0 16 16"> <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z" fill="#0f1c62"></path> </svg>
     <p>Nom du lieu <br><span>Adresse du lieu, 92000</span></p>
     <svg class="svg-1" style="color: rgb(15, 28, 98);" xmlns="http://www.w3.org/2000/svg" width="76" height="25" fill="currentColor"  viewBox="0 0 16 16"> <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" fill="#0f1c62"></path> </svg>
+
 </div>
+    <ul method="GET">
+        <li v-for="(value, index) in formData" :key="index" >
+            <p>{{ value }}</p></li>
+    </ul>
 
 <div class="rt">
     <svg class="rt-1" style="color: rgb(255, 113, 91);" xmlns="http://www.w3.org/2000/svg" width="130" height="50" fill="currentColor"  viewBox="0 0 16 16"> <path d="M5.921 11.9 1.353 8.62a.719.719 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" fill="#ff715b"></path> </svg>
@@ -26,15 +31,35 @@
 
 </template>
 <script>
-// import axios from 'axios'
+import axios from 'axios'
 
 export default {
  data()
   {
    return{
-    favoris: null
+    favoris: null,
+    formData: {},
+    props: ['datas']
    }
  },
+ created() {
+    this.fetchData();
+  },
+  methods: {
+    async fetchData() {
+      try {
+        const response = await axios.get("/src/views/AddFavoris.vue", );
+        this.formData = response.data;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
+//   computed: {
+//     data() {
+//       return JSON.parse(this.$route.params.datas)
+//     }
+//   }
 }
 </script>
 <style>
