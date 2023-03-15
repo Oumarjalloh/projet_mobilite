@@ -4,7 +4,7 @@
     <h1>Favoris</h1>
     <svg style="color: rgb(15, 28, 98);" xmlns="http://www.w3.org/2000/svg" width="500" height="50" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"> <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" fill="#0f1c62"></path> </svg>
 </div>
-<input class="ip" type="search" name="" id="">
+<input class="ip" type="search" name="" id="" placeholder="Adresse du lieu">
 <input class="ip" type="search" name="" id="" placeholder="Nom du lieu">
 <textarea id="story" name="story"
           rows="5" cols="33"  placeholder="Notes">
@@ -46,7 +46,6 @@ text-align: center
 
 h1{
 color: rgb(15, 28, 98);
-font-size: 24px;
 text-align: center;
 font-family: 'Montserrat', sans-serif;
 }
@@ -61,7 +60,7 @@ padding: 15px 20px 17px 20px;
 border: none;
 outline: none;
 border-radius: 5px;
-color: white
+color: #0F1C62
 }
 
 .ip{
@@ -75,13 +74,15 @@ textarea{
 font-size: large;
 display: flex;
 width: 292px;
-background-color: #EBF0FF;
+background-color: #7692FF;
+opacity: 25%;
 border-radius: 5px;
 border: 1px solid #EBF0FF;
 margin-top: 5%;
 margin-left: auto;
 margin-right: auto;
-padding-left: 10px
+padding-left: 10px;
+color: #0F1C62
 }
 
 .sbt{

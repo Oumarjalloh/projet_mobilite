@@ -4,6 +4,7 @@ import TestView from '../views/TestView.vue'
 import ParamView from '../views/ParamView.vue'
 import FavorisView from '../views/FavorisView.vue'
 import AddFavorisView from '../views/AddFavoris.vue'
+import LRoutingMachine from '../components/LRoutingMachine.vue'
 
 const routes = [
   {
@@ -44,6 +45,11 @@ const routes = [
     name: 'addfavoris',
     component: AddFavorisView
   },
+  {
+    path: '/lrouting',
+    name: 'lrouting',
+    component: LRoutingMachine
+  }
 
 ]
 const router = createRouter({

@@ -7,24 +7,24 @@
 </div>
 <div class="container-param">
   <div class="param-selec">
-    <select name="main" id="main">
+    <select name="main" id="main" class="select">
       <option value="gauche">Main Gauche</option>
       <option value="droite">Main droite</option>
     </select>
-    <label>Contraste</label>
+    <label class="label">Contraste</label>
     <div class="range">
       <p>-</p>
       <input type="range" min="1" max="50">
       <p>+</p>
     </div>
-    <label>Taille de police</label>
+    <label class="label">Taille de police</label>
     <div class="range">
       <p>Aa</p>
     <input type="range" min="1" max="50" v-model='fontSize'>
     <h2>Aa</h2>
     </div>
 
-    <label>Mode sombre</label>
+    <label class="label">Mode sombre</label>
 <div class="switch__container">
   <input id="switch-shadow" class="switch switch--shadow" type="checkbox">
   <label for="switch-shadow"></label>
@@ -59,7 +59,7 @@ export default {
 </script>
 
 <style>
-label{
+.label{
   background-color: #EBF0FF;
   border-radius: 10px;
   padding-bottom: 10px;
@@ -68,7 +68,7 @@ label{
   padding-right: 15px;
   border: none;
 }
-select{
+.select{
   background-color: #EBF0FF;
   border-radius: 10px;
   padding-bottom: 10px;
@@ -77,9 +77,7 @@ select{
   padding-right: 30px;
   border: none;
 }
-option{
 
-}
 .range{
   display: flex;
   align-items: center;

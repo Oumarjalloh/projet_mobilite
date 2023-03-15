@@ -21,9 +21,16 @@
         <div class="container-signal" v-if="signal">
         <input type="text" class="adresse" name="nom" placeholder="Insérer l'adresse...">
         <div class='from-loc'>
-    <label for="subscribeNews" class="lbl-text">Depuis ma localisation</label>
-    <input type="checkbox"  name="localisation" value="localisation">
+    <label for="loc" class="lbl-text">Depuis ma localisation</label>
+    <input type="checkbox"  name="localisation" value="localisation" class="checkbox">
         </div>
+        <select class="type-selection">
+          <option value="choix">Choissisez le type d'obstacles</option>
+          <option value="travaux">Travaux</option>
+          <option value="pietons">Passage piétons</option>
+          <option value="esacaliers">Escaliers</option>
+          <option value="autres">Autres</option>
+        </select>
         <button class="btn-modal">Valider</button>
         <button class="btn-close" @click="signal = false">Fermer</button>
       </div>
@@ -34,6 +41,7 @@
         layer-type="base"
         name="OpenStreetMap"
       ></l-tile-layer>
+   
 
       <div :key="marker.uuid" v-for="marker in result">
         <l-marker  :lat-lng="[marker.geom.coordinates[1], marker.geom.coordinates[0]]" v-on:click="Popup(marker.slug)">
@@ -54,13 +62,23 @@
         <p>{{ acces.activite.nom }}</p>
         <p>{{ acces.adresse }}</p>
          <a href="tel:{{ acces.telephone }}">{{acces.telephone}}</a>
+         <p>Transport : {{ acces.accessibilite.transport.transport_information }}</p>
+         <p>Stationnement PMR : {{ acces.accessibilite.transport.stationnement_pmr}}</p>
+         <p>Largeur taille d'entrée : {{ acces.accessibilite.entree.entree_largeur_mini}}</p>
+         <p>Formation du personels pour les PMR : {{ acces.accessibilite.accueil.accueil_personnels }}</p>
+         <p>Type de porte d'entrée : {{ acces.accessibilite.entree.entree_porte_type }}</p>
         </div> 
         <div class="btn-travel">
           <button class="btn-modal">Commencer le trajet</button>
         <button @click="modal = false" class="btn-close">Fermer</button>
         </div>
     </div>
+       <div id="test">
+    <div :id="mapId" class="map"></div>
+    <LRoutingMachine :mapObject="mapObject" :waypoints="waypoints" />
+  </div>
     </l-map>
+ 
     <div class="container-filtre" >
       <button class="btn-filter">Boulangeries</button>
       <button class="btn-filter">Restaurants</button>
@@ -110,11 +128,20 @@
 </template>
 
 <script>
+// import geoloc from'geoportal-extensions-leaflet'
+// import { L } from 'geoportal-extensions-leaflet';
+import LRoutingMachine from "../components/LRoutingMachine.vue";
 
 import axios from 'axios'
 import "leaflet/dist/leaflet.css";
 import { LMap, LTileLayer, LMarker, LCircle,LControlZoom, } from "@vue-leaflet/vue-leaflet";
-import { latLng, icon } from "leaflet";
+import {  icon } from "leaflet";
+import L from "leaflet";
+
+const waypoints = [
+  { lat: 48.7507965, lng:  2.2626174 },
+  { lat: 48.75377, lng:  2.297062 },
+];
 export default {
   name: 'HelloWorld',
   components: {
@@ -123,17 +150,23 @@ export default {
     LMarker,
     LCircle,
     LControlZoom,
-    
+    LRoutingMachine   
   },
   data(){
     return{
       filtre: false,
+      mapId: "map",
+      mapObject: null,
+      osmUrl: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
+      attribution:
+        '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      waypoints,
       signal: false,
       erps: null,
       acces: null,
       haha: null,
       zoom: 13,
-      center: latLng[48.7507965, 2.2626174],
+      center: {lat: 48.7507965, lng:2.2626174},
       bounds: null,
       modal: false,
       searchitems: false,
@@ -168,6 +201,16 @@ export default {
     //   this.erps = this.erps.data.results
     // }),
 
+  },
+  mounted2() {
+    this.mapObject = L.map(this.mapId, {
+      zoom: this.zoom,
+      center: this.center,
+    });
+
+    L.tileLayer(this.osmUrl, {
+      attribution: this.attribution,
+    }).addTo(this.mapObject);
   },
 
 
@@ -204,7 +247,6 @@ export default {
         this.filtre = false
       }
     },
-
     filterResults() {
         if(this.searchText.length >= 1) {
           this.hasResult = true;
@@ -228,6 +270,9 @@ export default {
       this.circle.lon = position.coords.longitude;
       console.log (position, this.circle.lat, this.circle.lon)
     },
+    Itineraire(){
+
+    }
 
 
   },
@@ -277,7 +322,7 @@ export default {
   font-family: "Montserrat", sans-serif;
   color: white;
   background-color: white;
-  border: 1px #AEC3FF solid;
+  border: 1px #0F1C62 solid;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   z-index: 9990;
@@ -298,7 +343,7 @@ export default {
   justify-content: center;
   text-align: center;
   place-self: center;
-  background-color: #AEC3FF;
+  background-color: #0F1C62;
   font-family: "Monserrat", sans-serif;
   color: white;
   padding: 10px;
@@ -355,7 +400,7 @@ export default {
   border: none;
   z-index: 99999;
 }
-input {
+/* input {
   color: var(--color-text);
 }
 input::placeholder {
@@ -363,6 +408,9 @@ input::placeholder {
 }
 input::type {
   color: var(--color-text);
+} */
+.type-selection{
+  width: 300px;
 }
 .btn-map{
   display: flex;
@@ -385,14 +433,17 @@ border-radius: 16px;
   padding: 20px;
 }
 .lbl-text{
-  color: black;
-  font-weight: bold;
+  color: #0F1C62;
+  font-weight: 500;
   font-size: 16px;
+  padding: 10px;
+  border-radius: 20px;
+
 }
 .from-loc{
   display: flex;
   align-items: center;
-  gap: 20px;
+  justify-content: flex-start;
 }
 input::placeholder{
   color: black;
@@ -400,9 +451,9 @@ input::placeholder{
 }
 .adresse{
   border-radius: 40px;
-  width: 90%;
   margin: 20px auto;
   display: block;
+  justify-content: center;
   height: 40px;
   font-size: 20px;
   padding: 0 16px;
@@ -477,7 +528,7 @@ align-items: center;
   display: grid;
 }
 h3 {
-  color: #AEC3FF;
+  color: #0F1C62;
   font-weight: bold;
   font-size: 24px;
 }
@@ -533,5 +584,13 @@ color: var(--color-text);
   padding: 20px;
   overflow-y: scroll;
   max-height: 300px;
+}
+.checkbox{
+  margin:0;
+  position: relative;
+  left: -40%;
+}
+#test{
+  z-index: 9999;
 }
 </style>
