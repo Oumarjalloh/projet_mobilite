@@ -142,7 +142,7 @@ export default {
     margin: 10px auto;
     justify-content: center;
     display: block;
-    color: #573b8a;
+    color: white;
     background: #FF715B;
     font-size: 1em;
     font-weight: bold;

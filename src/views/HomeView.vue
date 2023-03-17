@@ -31,8 +31,12 @@
           <option value="esacaliers">Escaliers</option>
           <option value="autres">Autres</option>
         </select>
-        <button class="btn-modal">Valider</button>
+        <div class="ensemble-btn">
+          <button class="btn-modal">Valider</button>
         <button class="btn-close" @click="signal = false">Fermer</button>
+        </div>
+        
+        
       </div>
       </form>
    
@@ -448,8 +452,9 @@ border-radius: 16px;
   gap: 20px;
   z-index: 9990;
   margin: 0 auto;
-  width: 100%;
+  max-width: 100%;
   padding: 20px;
+  justify-content: center;
 }
 .lbl-text{
   color: #0F1C62;
