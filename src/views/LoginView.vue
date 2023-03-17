@@ -94,9 +94,9 @@ export default {
     width: 60%;
 }
 
-label{
+.login label{
     color: #fff;
-    font-size: 2em;
+    font-size: 24px;
     justify-content: center;
     display: flex;
     font-weight: bold;
@@ -157,7 +157,7 @@ label{
     background: #AEC3FF;
     border-radius: 10% / 5%;
     transform: translateY(-107px);
-    transition: .8s ease-in-out;
+    transition: .5s ease-in-out;
 }
 .login label{
     color: #573b8a;

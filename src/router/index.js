@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import TestView from '../views/TestView.vue'
+import TestView from '../views/LoginView.vue'
 import ParamView from '../views/ParamView.vue'
 import FavorisView from '../views/FavorisView.vue'
 import AddFavorisView from '../views/AddFavoris.vue'
