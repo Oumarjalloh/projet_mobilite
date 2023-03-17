@@ -10,6 +10,9 @@ import store from './store'
 // //  el: '#app',
 // //  render: h => h(App)
 // // });
+
+// Importation de la BDD Firebase
+
 // // Import the functions you need from the SDKs you need
 // import { initializeApp } from "firebase/app";
 // import { getFirestore } from "firebase/firestore";
