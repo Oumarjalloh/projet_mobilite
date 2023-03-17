@@ -67,6 +67,12 @@
          <p>Largeur taille d'entrée : {{ acces.accessibilite.entree.entree_largeur_mini}}</p>
          <p>Formation du personels pour les PMR : {{ acces.accessibilite.accueil.accueil_personnels }}</p>
          <p>Type de porte d'entrée : {{ acces.accessibilite.entree.entree_porte_type }}</p>
+         <div class="container-suggestion">
+          <h3 class="suggestion">Suggestions</h3>
+         <textarea placeholder="Ecrivez votre recommandation ici "></textarea>
+         <button class="btn-suggest">Ajouter une suggestion</button>
+         </div>
+
         </div> 
         <div class="btn-travel">
           <button class="btn-modal">Commencer le trajet</button>
@@ -82,16 +88,16 @@
     <div class="container-filtre" >
       <button class="btn-filter">Boulangeries</button>
       <button class="btn-filter">Restaurants</button>
-      <div v-for="filtre in result" :key="filtre.uuid">
+      <!-- <div v-for="filtre in result" :key="filtre.uuid">
         <button class="btn-filter" @click="filtreSlug(filtre.slug)" >...</button>
-      </div>
+      </div> -->
     </div>
       <div >
-       <div v-if="filtre" class="filtre-popup">
+       <!-- <div v-if="filtre" class="filtre-popup">
         <button class="btn-filter">{{ accesb.activite.nom }}</button>
         <button @click="filtre = false" class="btn-close">Fermer</button>
 
-       </div>
+       </div> -->
   
         </div>
 
@@ -288,7 +294,8 @@ export default {
 </script>
 <style>
 
-.popup{
+@media screen and (max-width: 768px){
+  .popup{
   display: grid;
   justify-content: center;
   text-align: center;
@@ -330,6 +337,8 @@ export default {
   margin: 0 auto;
   width: 100%;
   padding: 20px;
+  overflow-y: scroll;
+
 }
 .btn-travel{
   display:flex;
@@ -392,6 +401,7 @@ export default {
   margin: 20px auto;
   display: block;
   background-color: var(--bg-search);
+  color: #0F1C62;
   height: 40px;
   font-size: 20px;
   padding: 0 16px;
@@ -411,6 +421,15 @@ input::type {
 } */
 .type-selection{
   width: 300px;
+  border-radius: 10px;
+  width: 300px;
+  padding: 10px;
+  background-color: #EBF0FF;
+  border: 1px solid black;
+  text-align: center;
+  font-weight: bold;
+  justify-content: center;
+  color: #0F1C62;
 }
 .btn-map{
   display: flex;
@@ -453,7 +472,9 @@ input::placeholder{
   border-radius: 40px;
   margin: 20px auto;
   display: block;
+  color: #0F1C62;
   justify-content: center;
+  background-color: white;
   height: 40px;
   font-size: 20px;
   padding: 0 16px;
@@ -545,7 +566,6 @@ h3 {
 }
 
 .leaflet-touch .leaflet-bar a{
-
     background-color: white;
 }
 .leaflet-touch .leaflet-bar a span{
@@ -588,9 +608,286 @@ color: var(--color-text);
 .checkbox{
   margin:0;
   position: relative;
-  left: -40%;
 }
-#test{
-  z-index: 9999;
+.container-suggestion {
+  display: grid;
+  align-items: center;
+  gap: 20px;
+}
+.container-suggestion textarea {
+  width: 300px;
+  height: 10vh;
+background-color: #7692FF;
+opacity: 25%;
+border-radius: 5px;
+border: 1px solid #EBF0FF;
+color: #0F1C62
+}
+.container-suggestion textarea::placeholder {
+  color: black;
+}
+.container-suggestion h3 {
+  color: #0F1C62;
+  text-align: left;
+  font-size: 16px;
+}
+.container-suggestion button {
+  background-color: #AEC3FF;
+  border: none;
+  border-radius: 10px;  
+  width: 100px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  padding: 10px;
+  color: white;
+}
+
+}
+@media screen and (min-width: 769px) {
+.btn-map{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px;
+}
+  .boutton-loc{
+  z-index: 999 !important;
+  background: none;
+  background-color: white;
+  border:1px solid #EBF0FF;
+  border-radius: 30%;
+  padding: 5px;
+  width: 50px;
+}
+.boutton-loc img{
+width: 20px;
+height: 25px;
+align-items: center;
+}
+.leaflet-touch .leaflet-bar a span{
+color: var(--color-text);
+font-weight: bold;
+font-size: 32px;
+}
+.container-signal{
+  display: grid;
+  position: absolute;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
+  color: black;
+  background-color: white;
+  border: 1px #AEC3FF solid;
+border-radius: 16px;
+  gap: 20px;
+  z-index: 9990;
+  margin: 0 auto;
+  width: 100%;
+  padding: 20px;
+}
+.adresse{
+  border-radius: 40px;
+  margin: 20px auto;
+  display: block;
+  height: 40px;
+  width: 600px;
+  color: #0F1C62;
+  font-size: 20px;
+  padding: 0 16px;
+  border-radius: 40px;
+  box-shadow: 0 8px 16px rgba(110, 110, 110, 0.206);
+  border: 1px solid rgba(110, 110, 110, 0.206);
+}
+.lbl-text{
+  color: #0F1C62;
+  font-weight: 500;
+  font-size: 16px;
+  border-radius: 20px;
+
+}
+.from-loc{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+input::placeholder{
+  color: black;
+  font-size: 16px;
+}
+.btn-modal{
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  place-self: center;
+  background-color: #0F1C62;
+  font-family: "Monserrat", sans-serif;
+  color: white;
+  padding: 10px;
+  width: 300px;
+  border-style: none;
+  border-radius: 10px;
+  font-weight: bold;
+}
+.btn-close{
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  place-self: center;
+  background-color: #FF715B;
+  font-family: "Monserrat", sans-serif;
+  color: white;
+  padding: 10px;
+  width: 300px;
+  border-style: none;
+  border-radius: 10px;
+  font-weight: bold
+}
+
+.type-selection{
+  display: block;
+  border-radius: 10px;
+  width: 300px;
+  padding: 10px;
+  background-color: #EBF0FF;
+  border: 1px solid black;
+  text-align: center;
+  font-weight: bold;
+  justify-content: center;
+  color: #0F1C62;
+}
+.modal {
+  display: grid;
+  position: absolute;
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  background-color: white;
+  border: 1px #0F1C62 solid;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  z-index: 9990;
+  bottom: 0;
+  margin: 0 auto;
+  width: 800px;
+  padding: 20px;
+}
+.btn-travel{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.container-filtre{
+  display: flex;
+  margin: 10px;
+  gap: 10px;
+}
+.btn-filter{
+  color: var(--color-text);
+  background-color: white;
+  box-shadow: 0 8px 16px rgba(110, 110, 110, 0.206);
+  border-radius: 10px;
+  border-style: none;
+  padding: 10px;
+}
+.btn-filter:hover{
+  background-color: #EBF0FF;
+}
+.items-search{
+  justify-content: space-between;
+  padding: 10px;
+  align-items: center;
+}
+.search-bar{
+  display: flex;
+  align-items: center;
+}
+.search {
+  width: 90%;
+  margin: 20px auto;
+  display: block;
+  background-color: var(--bg-search);
+  height: 40px;
+  font-size: 20px;
+  padding: 0 16px;
+  border-radius: 40px;
+  box-shadow: 0 8px 16px rgba(110, 110, 110, 0.206);
+  border: none;
+  z-index: 99999;
+}
+.items-search img{
+  width: 80%;
+  height: 80%;
+}
+.items-search ul {
+  width: 90%;
+  margin: 10px auto;
+  max-height: 250px;
+  overflow-y: scroll;
+  z-index: 88 !important;
+  border-radius: 10px;
+}
+.search-bar{
+  display: flex;
+  align-items: center;
+}
+.items-search  li {
+  list-style: none;
+  padding: 10px;
+  border-style: none;
+  margin: 5px 0;
+  cursor: pointer;
+
+}
+.li-search li{
+  display: flex;
+  background-color: #EBF0FF;
+  border-radius: 20px;
+  border-style: none;
+}
+.descriptif-search{
+  display: grid;
+}
+.active{
+  background-color: white;
+  align-items: center;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  justify-content: space-between;
+  margin: 0;
+  position: relative;
+}
+.container-suggestion {
+  display: grid;
+  align-items: center;
+  gap: 20px;
+}
+.container-suggestion textarea {
+  width: 700px;
+  height: 10vh;
+background-color: #7692FF;
+opacity: 25%;
+border-radius: 5px;
+border: 1px solid #EBF0FF;
+color: #0F1C62
+}
+.container-suggestion textarea::placeholder {
+  color: black;
+}
+.container-suggestion h3 {
+  color: #0F1C62;
+  text-align: left;
+  font-size: 16px;
+}
+.container-suggestion button {
+  background-color: #AEC3FF;
+  border: none;
+  border-radius: 10px;  
+  width: 200px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  padding: 10px;
+  color: white;
+}
 }
 </style>

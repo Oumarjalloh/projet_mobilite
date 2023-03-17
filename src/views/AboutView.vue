@@ -59,7 +59,8 @@
 // </script>
 
 <style>
-	.header-about{
+	@media screen and (max-width : 768px) {
+		.header-about{
 		margin-top: 20px;
 		display: flex;
 		align-items: center;
@@ -88,5 +89,38 @@ h2{
 .about img{
 	max-width: 100%
 }
+		
+	}
+	@media screen and (min-width : 768px) {
+		.header-about{
+		margin-top: 20px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 20px;
+	}
+	.header-about img{
+		height: 40px;
+		width: 40px;
+	}
+h1{
+	color: rgb(15, 28, 98);
+text-align: center;
+font-family: 'Montserrat', sans-serif;
+font-weight: bold;
+font-size: 44px;
 
+}
+h2{
+	font-size: 24px;
+	color: #FF715B;
+}
+.about{
+	margin:20px;
+	gap: 10px
+}
+.about img{
+	max-width: 600px
+	}
+}
 </style>

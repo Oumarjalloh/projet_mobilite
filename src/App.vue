@@ -1,14 +1,19 @@
 <template>
- <div :style="{fontSize: changeSize}">
-    <nav>
-      <ul v-if="!isMobile">
-        <li @click="toggleDropdown"><router-link to="/">Accueil</router-link></li>
-        <li @click="toggleDropdown"><router-link to="/about">A propos</router-link></li>
-        <li @click="toggleDropdown"><router-link to="/test">Inscription/Connexion</router-link></li>
-								<li @click="toggleDropdown"><router-link to="/param">Paramètres</router-link></li>
-								<li @click="toggleDropdown"><router-link to="/favoris">Favoris</router-link></li>
-      </ul>
-      <template  v-else>
+ <div>
+    
+					<div class="menu-ordi" v-if="!isMobile">
+						<nav class="nav1">
+							<router-link to="/home"><img src="../src/assets/logo-mia-light.png" class="logo-mia-ordi"></router-link>
+							</nav>
+							<div class="sub-menu">
+							<router-link to="/about"><img src="../src/assets/about-ordi.png" class="about-ordi"></router-link>
+							<router-link to="/test"><img src="../src/assets/compte-ordi.png" class="compte-ordi"></router-link>
+							<router-link to="/param"><img src="../src/assets/param-ordi.png" class="param-ordi"></router-link>
+							<router-link to="/favoris"><img src="../src/assets/favoris-ordi-vector.png" class="favoris-ordi"></router-link>
+							</div>
+					</div>
+      <template v-else>
+							<nav class="nav2">
         <div class="menu-mobile">
 									<router-link to="/test"><img src="./assets/logo-user.png"></router-link>
 									<!-- <router-link to="/home" class="home"></router-link> -->
@@ -25,8 +30,10 @@
 									</div>
 									</div>
         </div>
+								</nav>
       </template>
-    </nav>
+					
+
   </div> 
 		<router-view/>
 </template>
@@ -89,20 +96,20 @@ body{
   color: #2c3e50;
 }
 
-nav {
+.nav2 {
   padding: 30px;
   display: grid;
 		background-color: var(--bg-menu);
 }
 
 
-nav a {
+.nav2 a {
   font-weight: bold;
   color: var(--color-text);
   text-decoration: none;
 }
 
-nav a.router-link-exact-active {
+.nav2 a.router-link-exact-active {
   color: var(--color-menu-active);
   text-decoration: none;
 }
@@ -142,22 +149,28 @@ background: none;
 	position: relative;
 	top: -5px;
 }
-@media screen and (max-width:1200px){
-	.menu-list {
-					width: 55%;
-	}
-}
 
-@media screen and (max-width:1000px){
-	.menu-list a {
-					font-size: 14px;
-	}
-}
+
+
 
 @media screen and (max-width:768px) {
 	html, body {
 					position: relative;
 	}
+	.sub-menu{
+  position: relative;
+  right: 80px;
+		top: 30px;
+		z-index: 9999;
+		background-color: white;
+		padding-left: 10px;
+		padding-right: 10px;
+		width: 150px;
+  border-radius: 0px 0px 16px 16px;
+}
+.sub-menu li:hover{
+	color: #FF715B;
+}
 
 
 	.menu-list {
@@ -243,18 +256,41 @@ background: none;
 		}
 }
 
-.sub-menu{
-  position: relative;
-  right: 80px;
-		top: 30px;
-		z-index: 9999;
+
+@media screen and (min-width: 769px){
+ .nav1{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		max-width: 100%;
+	}
+ .menu-ordi {
+		display: flex;
 		background-color: white;
-		padding-left: 10px;
-		padding-right: 10px;
-		width: 150px;
-  border-radius: 0px 0px 16px 16px;
-}
-.sub-menu li:hover{
-	color: #FF715B;
+		width: 100%;
+		align-items: center;
+		justify-content: space-between;
+		align-items: center;
+		padding: 20px;
+
+	}
+
+	.logo-mia-ordi{
+		width: 100px;
+	}
+	.menu-ordi a {
+		text-decoration: none;
+	}
+	.sub-menu {
+		gap: 30px;
+		align-items: center;
+		display: flex;
+	}
+	.favoris-ordi{
+		width: 20px;
+	}
+	.about-ordi{
+		width: 30px;
+	}
 }
 </style>
