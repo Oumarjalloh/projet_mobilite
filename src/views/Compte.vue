@@ -21,7 +21,8 @@
 <!-- Container profil down  -->
 <div class="container-profil-down">
   <h3>Niveau d'exploration d'Antony :</h3>
-  <input type="range" value="4" min="0" max="10">
+  <!-- <input type="range" value="4" min="0" max="10"> -->
+  <img src="../assets/levelup.png" alt="">
   <p>Aventurier junior: 4/10</p>
   <h4>E-mail :</h4>
   <input type="email" name="email"  required="" placeholder="victordupont98@gmail.com">
@@ -90,7 +91,13 @@
   position: relative;
   right: -50%;
  }
- .container-profil-down input {
+ .container-profil-down img{
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 5px;
+ }
+ .container-profil-down input{
   background-color: white;
   border-radius: 15px;
   height: 20px;
