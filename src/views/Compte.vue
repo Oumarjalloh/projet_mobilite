@@ -6,7 +6,8 @@
   <img src="../assets/compte.png" alt="compte">
   <h1>Mon compte</h1>
  </div>
-<img src="../assets/croix.png" alt="">
+ <router-link to="/login"><img src="../assets/croix.png" alt=""></router-link>
+
 </div>
 
 <!-- Container profil up -->

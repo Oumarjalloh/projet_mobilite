@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import TestView from '../views/LoginView.vue'
+import Login from '../views/LoginView.vue'
 import ParamView from '../views/ParamView.vue'
 import FavorisView from '../views/FavorisView.vue'
 import AddFavorisView from '../views/AddFavoris.vue'
@@ -22,9 +22,9 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   },
   {
-    path: '/test',
-    name: 'test',
-    component: TestView
+    path: '/login',
+    name: 'login',
+    component: Login
   },
   {
     path: '/param',

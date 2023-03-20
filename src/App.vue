@@ -7,7 +7,7 @@
 							</nav>
 							<div class="sub-menu">
 							<router-link to="/about"><img src="../src/assets/about-ordi.png" class="about-ordi"></router-link>
-							<router-link to="/test"><img src="../src/assets/compte-ordi.png" class="compte-ordi"></router-link>
+							<router-link to="/login"><img src="../src/assets/compte-ordi.png" class="compte-ordi"></router-link>
 							<router-link to="/param"><img src="../src/assets/param-ordi.png" class="param-ordi"></router-link>
 							<router-link to="/favoris"><img src="../src/assets/favoris-ordi-vector.png" class="favoris-ordi"></router-link>
 							</div>
@@ -15,7 +15,7 @@
       <template v-else>
 							<nav class="nav2">
         <div class="menu-mobile">
-									<router-link to="/test"><img src="./assets/logo-user.png"></router-link>
+									<router-link to="/login"><img src="./assets/logo-user.png"></router-link>
 									<!-- <router-link to="/home" class="home"></router-link> -->
 									<img src="./assets/logo-mia-light.png" class="logo-mia">
 									

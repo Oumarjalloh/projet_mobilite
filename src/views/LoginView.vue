@@ -23,7 +23,7 @@
                     <input type="email" name="email" required="" class="input">
                     <label class="lbl3" for="chk" aria-hidden="true">Mot de passe:</label>
                     <input type="password" name="mdp" required="" class="input">
-                    <button class='connect'>Me connecter</button>
+                    <button class='connect'><router-link to='/compte'>Me connecter</router-link></button>
                 </form>
             </div>
     </div>
@@ -159,6 +159,10 @@ export default {
     border-radius: 10% / 5%;
     transform: translateY(-107px);
     transition: .5s ease-in-out;
+}
+.login a {
+    text-decoration: none;
+    color: #FF715B;
 }
 .login label{
     color: #573b8a;
