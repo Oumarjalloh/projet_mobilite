@@ -205,7 +205,7 @@ font-size: large;
 display: flex;
 width: 700px;
 background-color: #7692FF;
-opacity: 25%;
+opacity: 50%;
 border-radius: 5px;
 border: 1px solid #EBF0FF;
 margin-top: 5%;
@@ -215,7 +215,7 @@ padding-left: 10px;
 }
 form textarea::placeholder{
 color: #0F1C62;
-z-index: 2;
+z-index: 20;
 }
 .sbt{
 width: 100px;
