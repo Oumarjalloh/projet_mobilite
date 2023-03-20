@@ -5,6 +5,7 @@ import ParamView from '../views/ParamView.vue'
 import FavorisView from '../views/FavorisView.vue'
 import AddFavorisView from '../views/AddFavoris.vue'
 import LRoutingMachine from '../components/LRoutingMachine.vue'
+import Compte from '../views/Compte.vue'
 
 const routes = [
   {
@@ -51,6 +52,11 @@ const routes = [
     path: '/lrouting',
     name: 'lrouting',
     component: LRoutingMachine
+  },
+  {
+    path: '/compte',
+    name: 'compte',
+    component: Compte
   }
 
 ]
