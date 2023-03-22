@@ -84,7 +84,8 @@ export default {
 .lbl1{
     color: #573b8a;
     font-size: 17px;
-    justify-content: left;
+    display: flex;
+    margin: 0px 0px 0px 50px;
 }
 .lbl2{
     padding: 15px 0px 37px 0px;
@@ -92,7 +93,7 @@ export default {
 .lbl3{
     justify-content: left;
     font-size: 20px;
-    margin: 0% 30% 0% 8%;
+    margin: 0% 30% 0% 5%;
     width: 60%;
 }
 
@@ -158,7 +159,7 @@ export default {
     height: 700px;
     background: #AEC3FF;
     border-radius: 10% / 5%;
-    transform: translateY(-107px);
+    transform: translateY(-100px);
     transition: .5s ease-in-out;
 }
 .login a {
@@ -171,7 +172,7 @@ export default {
 }
 
 #chk:checked ~ .login{
-    transform: translateY(-450px);
+    transform: translateY(-470px);
 }
 #chk:checked ~ .login label{
     transform: scale(0.8);
