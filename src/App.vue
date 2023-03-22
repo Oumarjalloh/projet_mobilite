@@ -6,10 +6,17 @@
 							<router-link to="/home"><img src="../src/assets/logo-mia-light.png" class="logo-mia-ordi"></router-link>
 							</nav>
 							<div class="sub-menu">
-							<router-link to="/about"><img src="../src/assets/about-ordi.png" class="about-ordi"></router-link>
-							<router-link to="/login"><img src="../src/assets/compte-ordi.png" class="compte-ordi"></router-link>
-							<router-link to="/param"><img src="../src/assets/param-ordi.png" class="param-ordi"></router-link>
-							<router-link to="/favoris"><img src="../src/assets/favoris-ordi-vector.png" class="favoris-ordi"></router-link>
+								<ul>
+									<li><img src="../src/assets/about-ordi.png" class="about-ordi"><router-link to="/about">A propos</router-link></li>
+									<li><img src="../src/assets/compte-ordi.png" class="compte-ordi"><router-link to="/login">Compte</router-link></li>
+									<li><img src="../src/assets/param-ordi.png" class="about-ordi"><router-link to="/param">Paramètres</router-link></li>
+									<li><img src="../src/assets/favoris-ordi-vector.png" class="favoris-ordi"><router-link to="/favoris">Favoris</router-link></li>
+									<li><img src="../src/assets/blog-menu-1.png" class="blog-ordi"><router-link to="/blog">Blog</router-link></li>
+								</ul>
+							
+							
+							
+							
 							</div>
 					</div>
       <template v-else>
@@ -22,10 +29,12 @@
 										<div class="screen_menu_hamburger" @click="toggleDropdown">
 									<div class="sub-menu">
 										<ul v-if="showDropdown" >
-            <li><router-link to="/home">Accueil</router-link></li>
-            <li><router-link to="/about">A propos</router-link></li>
-												<li><router-link to="/param">Paramètres</router-link></li>
-												<li><router-link to="/favoris">Favoris</router-link></li>
+            <li><img src="../src/assets/home.png" class="home-ordi"><router-link to="/home">Accueil</router-link></li>
+            <li><img src="../src/assets/about-ordi.png" class="about-ordi"><router-link to="/about">A propos</router-link></li>
+												<li><img src="../src/assets/param-ordi.png" class="param-ordi"><router-link to="/param">Paramètres</router-link></li>
+												<li><img src="../src/assets/favoris-ordi-vector.png" class="favoris-ordi"><router-link to="/favoris">Favoris</router-link></li>
+												<li><img src="../src/assets/blog-menu-1.png" class="blog-ordi"><router-link to="/blog">Blog</router-link></li>
+
           </ul>
 									</div>
 									</div>
@@ -157,16 +166,54 @@ background: none;
 	html, body {
 					position: relative;
 	}
+	.about-ordi{
+		width: 20px;
+	}
+	.home-ordi{
+		position: relative;
+  right: 2px;	
+}
+.blog-ordi{
+	width: 23px;
+}
+	.param-ordi{
+		width: 23px;
+		position: relative;
+		right: 3px;
+	}
+	
+	.favoris-ordi{
+		width: 15px
+	}
+	.sub-menu li {
+		display: flex;
+		gap: 10px;
+		align-items: center;
+		justify-content: flex-start;
+		text-align: start;
+	}
+	.sub-menu ul {
+		gap: 15px;
+			display: flex;
+		flex-direction: column;
+		align-items: flex-start;;
+		text-align: center;
+		margin: 10px;
+		padding: 10px;
+
+	}
 	.sub-menu{
-  position: relative;
-  right: 80px;
-		top: 30px;
+  position: absolute;
+  right: 0px;
+  top: 87px;
 		z-index: 9999;
 		background-color: white;
 		padding-left: 10px;
-		padding-right: 10px;
-		width: 150px;
+		width: 180px;
   border-radius: 0px 0px 16px 16px;
+		text-align: center;
+		padding-right: 20px;
+
 }
 .sub-menu li:hover{
 	color: #FF715B;
@@ -285,6 +332,26 @@ background: none;
 		gap: 30px;
 		align-items: center;
 		display: flex;
+	}
+	.sub-menu ul {
+		display: flex;
+		align-items: center;
+		margin-right: 20px;
+		gap: 20px;
+	}
+	.sub-menu ul li {
+		align-items: center;
+		display: flex;
+		text-decoration: none;
+	}
+	.sub-menu ul li a{
+		align-items: center;
+		text-decoration: none;
+		color: #0F1C62;
+		margin-left: 10px;		
+		font-weight: bold;
+		font-family: 'Montserrat', sans-serif;
+		font-size: 16px;
 	}
 	.favoris-ordi{
 		width: 20px;

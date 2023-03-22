@@ -590,7 +590,8 @@ color: var(--color-text);
   padding: 10px;
 }
 .btn-filter:hover{
-  background-color: #EBF0FF;
+  background-color: #FF715B;
+  color: white;
 }
 .filtre-popup{
   position: fixed;
@@ -796,7 +797,8 @@ input::placeholder{
   padding: 10px;
 }
 .btn-filter:hover{
-  background-color: #EBF0FF;
+  background-color: #FF715B;
+  color: white;
 }
 .items-search{
   justify-content: space-between;

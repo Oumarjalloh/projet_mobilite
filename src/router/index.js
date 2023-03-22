@@ -6,6 +6,7 @@ import FavorisView from '../views/FavorisView.vue'
 import AddFavorisView from '../views/AddFavoris.vue'
 import LRoutingMachine from '../components/LRoutingMachine.vue'
 import Compte from '../views/Compte.vue'
+import Blog from '../views/Blog.vue'
 
 const routes = [
   {
@@ -57,7 +58,12 @@ const routes = [
     path: '/compte',
     name: 'compte',
     component: Compte
-  }
+  },
+  {
+    path: '/blog',
+    name: 'blog',
+    component: Blog
+  },
 
 ]
 const router = createRouter({
