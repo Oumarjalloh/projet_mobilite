@@ -3,7 +3,7 @@
  <div class="titre-blog">
   <div class="clc-ce-blog">
    <img src="../assets/blog-menu.png" class="blog-img">
-  <h1>Blog</h1>
+  <h1>Actualités</h1>
   </div>
   <img src="../assets/croix.png" class="croix-de-merde">
  

@@ -10,16 +10,16 @@
 </div>
 <div class="fav-2">
   <div class="fav-3">
-    <svg class="bi-bookmark-fill" style="color: rgb(15, 28, 98);" xmlns="http://www.w3.org/2000/svg" width="52" height="35" fill="currentColor" viewBox="0 0 16 16"> <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z" fill="#0f1c62"></path> </svg>
-    <p>Nom du lieu <br><span>Adresse du lieu, 92000</span></p>
+    <img src="../assets/icon-boulangerie.svg">
+    <p>Romaric <br><span>32 rue Marteau bellise, 92160</span></p>
   </div>
 
     <svg class="svg-1" style="color: rgb(15, 28, 98);" xmlns="http://www.w3.org/2000/svg" width="76" height="25" fill="currentColor" viewBox="0 0 16 16"> <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" fill="#0f1c62"></path> </svg>
 </div>
 <div class="fav-2">
   <div class="fav-3">
-    <svg style="color: rgb(15, 28, 98);" xmlns="http://www.w3.org/2000/svg" width="52" height="35" fill="currentColor" class="bi-bookmark-fill" viewBox="0 0 16 16"> <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z" fill="#0f1c62"></path> </svg>
-    <p>Nom du lieu <br><span>Adresse du lieu, 92000</span></p>
+    <img src="../assets/pharmatie.svg">
+    <p>Pharmacie <br><span>65 Avenue Matignon, 92160</span></p>
   </div>
 
     <svg class="svg-1" style="color: rgb(15, 28, 98);" xmlns="http://www.w3.org/2000/svg" width="76" height="25" fill="currentColor"  viewBox="0 0 16 16"> <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" fill="#0f1c62"></path> </svg>
@@ -27,8 +27,8 @@
 </div>
 <div class="fav-2">
   <div class="fav-3">
-    <svg style="color: rgb(15, 28, 98);" xmlns="http://www.w3.org/2000/svg" width="52" height="35" fill="currentColor" class="bi-bookmark-fill" viewBox="0 0 16 16"> <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z" fill="#0f1c62"></path> </svg>
-    <p>Nom du lieu <br><span>Adresse du lieu, 92000</span></p>
+    <img src="../assets/icon-restaurant.svg">
+    <p>Papy aux Fourneaux<br><span>70 rue de l'Ouest , 92160</span></p>
   </div>
 
     <svg class="svg-1" style="color: rgb(15, 28, 98);" xmlns="http://www.w3.org/2000/svg" width="76" height="25" fill="currentColor"  viewBox="0 0 16 16"> <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" fill="#0f1c62"></path> </svg>
@@ -135,6 +135,7 @@ h1{
 .fav-3{
   display: flex;
   align-items: center;
+  gap: 10px;
 }
 .svg-1{
     padding: 0px 0px 0px 30px;

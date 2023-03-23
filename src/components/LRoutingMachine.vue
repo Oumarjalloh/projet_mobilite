@@ -1,4 +1,6 @@
 <script>
+// PLUGIN POUR CREER UN ITINERAIRE
+
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import L from "leaflet";
 import { IRouter, IGeocoder, LineOptions } from "leaflet-routing-machine";

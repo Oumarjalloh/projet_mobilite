@@ -1,7 +1,7 @@
 <template>
-  <div class="header-param"> 
+  <div class="header-param" > 
     <div class="sub-header-param">
-    <img src="../assets/engrenage.png" alt="parametres">
+    <img src="../assets/acces-1.svg" alt="parametres">
     <h1>Paramètres</h1>
     </div>
 </div>
@@ -14,7 +14,7 @@
     <label class="label">Contraste</label>
     <div class="range">
       <p>-</p>
-      <input type="range" min="1" max="50">
+      <input type="range" min="1" max="50" v-model="contrast">
       <p>+</p>
     </div>
     <label class="label">Taille de police</label>
@@ -30,27 +30,35 @@
   <label for="switch-shadow" class="label2"></label>
 </div>
   </div>
-  
+
 
 </div>
 <h2 :style="{fontSize: changeSize}">TEST TITRE</h2>
 <p :style="{fontSize: changeSize}">Test changement de taille texte</p>
-
+<!-- <div  :style="{contrast: changecontrast}" class="bloc-contrast-test" >HAHHAHHAHAH</div> -->
 </template>
 <script>
 export default {
  data(){
   return{
    active: false,
-   fontSize: 16
+   fontSize: 16,
+   contrast: 10
   }
  },
  computed: {
   changeSize: function(){
    return this.fontSize + "px";
-  }
+  },
+  changecontrast: function(){
+  const sample = document.getElementsByClassName('bloc-contraste-test')
+  return sample.style.filter = this.contrast + '%'
+ } 
  }
+
 }
+ 
+
 
 </script>
 
@@ -65,6 +73,12 @@ export default {
   padding-right: 15px;
   border: none;
   color: #0F1C62;
+}
+.bloc-contrast-test{
+width: 200px;
+background-color: #8693D6;
+height: 50px;
+filter: contrast(10%);
 }
 .select{
   background-color: #EBF0FF;
@@ -210,6 +224,7 @@ p {
   color: #0F1C62;
   text-align: center;
 }
+
 .select{
   background-color: #EBF0FF;
   border-radius: 10px;

@@ -1,6 +1,6 @@
 <template>
  <div>
-    
+    <!-- Menu Ordinateur  -->
 					<div class="menu-ordi" v-if="!isMobile">
 						<nav class="nav1">
 							<router-link to="/home"><img src="../src/assets/logo-mia-light.png" class="logo-mia-ordi"></router-link>
@@ -9,16 +9,13 @@
 								<ul>
 									<li><img src="../src/assets/about-ordi.png" class="about-ordi"><router-link to="/about">A propos</router-link></li>
 									<li><img src="../src/assets/compte-ordi.png" class="compte-ordi"><router-link to="/login">Compte</router-link></li>
-									<li><img src="../src/assets/param-ordi.png" class="about-ordi"><router-link to="/param">Paramètres</router-link></li>
+									<li><img src="../src/assets/acces-menu.svg" class="about-ordi"><router-link to="/param">Paramètres</router-link></li>
 									<li><img src="../src/assets/favoris-ordi-vector.png" class="favoris-ordi"><router-link to="/favoris">Favoris</router-link></li>
-									<li><img src="../src/assets/blog-menu-1.png" class="blog-ordi"><router-link to="/blog">Blog</router-link></li>
-								</ul>
-							
-							
-							
-							
+									<li><img src="../src/assets/blog-menu-1.png" class="blog-ordi"><router-link to="/blog">Actualités</router-link></li>
+								</ul>			
 							</div>
 					</div>
+					<!-- Menu Mobile -->
       <template v-else>
 							<nav class="nav2">
         <div class="menu-mobile">
@@ -31,10 +28,9 @@
 										<ul v-if="showDropdown" >
             <li><img src="../src/assets/home.png" class="home-ordi"><router-link to="/home">Accueil</router-link></li>
             <li><img src="../src/assets/about-ordi.png" class="about-ordi"><router-link to="/about">A propos</router-link></li>
-												<li><img src="../src/assets/param-ordi.png" class="param-ordi"><router-link to="/param">Paramètres</router-link></li>
+												<li><img src="../src/assets/acces-menu.svg" class="param-ordi"><router-link to="/param">Paramètres</router-link></li>
 												<li><img src="../src/assets/favoris-ordi-vector.png" class="favoris-ordi"><router-link to="/favoris">Favoris</router-link></li>
-												<li><img src="../src/assets/blog-menu-1.png" class="blog-ordi"><router-link to="/blog">Blog</router-link></li>
-
+												<li><img src="../src/assets/blog-menu-1.png" class="blog-ordi"><router-link to="/blog">Actualités</router-link></li>
           </ul>
 									</div>
 									</div>
